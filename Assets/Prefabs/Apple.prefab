@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 28027298059251418, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_Radius
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 164278933160919736, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -24,6 +28,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: eca68f85421849649b89191d399497b0, type: 2}
+    - target: {fileID: 5006599930210527501, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 3999678221342150853, guid: c536f2f569eead24ea95185d7a387901, type: 3}
     - target: {fileID: 5836773642521653556, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -43,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 7106666286341512647, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9e0945cdbd99c8644a182b3fcacd7823, type: 2}
+      objectReference: {fileID: -876546973899608171, guid: c536f2f569eead24ea95185d7a387901, type: 3}
     - target: {fileID: 7368332209181033204, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -60,6 +68,38 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: eca68f85421849649b89191d399497b0, type: 2}
+    - target: {fileID: 8274484194936006312, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274484194936006312, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274484194936006312, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274484194936006312, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274484194936006312, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274484194936006312, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274484194936006312, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274484194936006312, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: sliced
       value: 
@@ -112,6 +152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple
       objectReference: {fileID: 0}
+    - target: {fileID: 9093774411436221012, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 3999678221342150853, guid: c536f2f569eead24ea95185d7a387901, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8763740054113742822, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
@@ -138,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
   outlineWidth: 6
   precomputeOutline: 0

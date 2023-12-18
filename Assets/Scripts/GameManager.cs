@@ -1,18 +1,22 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private Spawner spawner;
+    [SerializeField] private Camera camera;
+    [SerializeField] private Spawner[] spawners;
+
     [SerializeField] private Text scoreText;
     [SerializeField] private Image fadeImage;
 
     private int score;
     public int Score => score;
 
+    private float prev_aspect;
     private void Awake()
     {
         if (Instance != null) {
@@ -28,13 +32,33 @@ public class GameManager : MonoBehaviour
         NewGame();
     }
 
+    private void Update()
+    {
+        var aspect = Screen.width / (float)Screen.height;
+        if (aspect != prev_aspect)
+        {
+            prev_aspect = aspect;
+
+            var f = Mathf.InverseLerp(9f / 16f, 9 / 20f, aspect);
+            var size = Mathf.Lerp(10, 12.5f, f);
+            camera.orthographicSize = size;
+            foreach (var s in spawners)
+            {
+                s.transform.position = new Vector3(s.transform.position.x, s.startY + (10f - size), s.transform.position.z);
+            }
+        }
+    }
+
     private void NewGame()
     {
         Time.timeScale = 1f;
 
         ClearScene();
 
-        spawner.enabled = true;
+        foreach (var s in spawners)
+        { 
+            s.enabled = true;
+        }
 
         score = 0;
         scoreText.text = score.ToString();
@@ -71,7 +95,10 @@ public class GameManager : MonoBehaviour
 
     public void Explode()
     {
-        spawner.enabled = false;
+        foreach (var s in spawners)
+        {
+            s.enabled = false;
+        }
         StartCoroutine(ExplodeSequence());
     }
 

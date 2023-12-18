@@ -4,6 +4,7 @@ using System.Collections;
 public class Fruit : MonoBehaviour
 {
     public GameObject whole;
+    public Camera camera;
 
     private Rigidbody fruitRigidbody;
     private Collider fruitCollider;
@@ -31,11 +32,11 @@ public class Fruit : MonoBehaviour
         GameManager.Instance.IncreaseScore(points);
         juiceEffect.Play();
         fruitCollider.enabled = false;
-        outline.enabled = true;
-
-        yield return new WaitForSecondsRealtime(0.5f);
-
+//        outline.enabled = true;
+//        camera.enabled = true;
+//        yield return new WaitForSecondsRealtime(0.1f);
         whole.SetActive(false);
+        yield return null;
     }
 
 }
