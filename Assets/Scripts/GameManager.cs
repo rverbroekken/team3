@@ -2,16 +2,21 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.Experimental.Rendering;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private Camera camera;
-    [SerializeField] private Spawner[] spawners;
+    [SerializeField] private Spawner spawner;
 
     [SerializeField] private Text scoreText;
     [SerializeField] private Image fadeImage;
+
+    [SerializeField] private RenderTexture renderTextureDescriptor;
+
+    [SerializeField] private Tray tray;
 
     private int score;
     public int Score => score;
@@ -24,6 +29,18 @@ public class GameManager : MonoBehaviour
         } else {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    public void OnFruitSelect(Fruit fruit)
+    {
+        if (tray.IsFull())
+        {
+            Explode();
+        }
+        else
+        {
+            tray.AddItem(fruit);
         }
     }
 
@@ -42,10 +59,7 @@ public class GameManager : MonoBehaviour
             var f = Mathf.InverseLerp(9f / 16f, 9 / 20f, aspect);
             var size = Mathf.Lerp(10, 12.5f, f);
             camera.orthographicSize = size;
-            foreach (var s in spawners)
-            {
-                s.transform.position = new Vector3(s.transform.position.x, s.startY + (10f - size), s.transform.position.z);
-            }
+            spawner.transform.position = new Vector3(spawner.transform.position.x, spawner.startY + (10f - size), spawner.transform.position.z);
         }
     }
 
@@ -54,14 +68,32 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         ClearScene();
+        CreateRenderTextures();
 
-        foreach (var s in spawners)
-        { 
-            s.enabled = true;
-        }
+        spawner.enabled = true;
 
         score = 0;
         scoreText.text = score.ToString();
+    }
+
+    void CreateRenderTextures()
+    {
+        float x = 0;
+        foreach (var fruit in spawner.fruitPrefabs)
+        {
+            RenderTexture t = new RenderTexture(renderTextureDescriptor);
+            var item = Instantiate(fruit, new Vector3(40f + x, -40f, 0f), Quaternion.identity);
+            var rigidbody = item.GetComponent<Rigidbody>();
+            rigidbody.useGravity = false;
+            rigidbody.mass = 0;
+            item.camera.targetTexture = t;
+            item.camera.Render();
+            (fruit as Fruit).texture = t;
+            x += 5f;
+//            tray.AddTexture(t);
+//            Destroy(item.gameObject);
+//          break;
+        }
     }
 
     private void ClearScene()
@@ -77,6 +109,8 @@ public class GameManager : MonoBehaviour
         foreach (Bomb bomb in bombs) {
             Destroy(bomb.gameObject);
         }
+
+        tray.Clear();
     }
 
     public void IncreaseScore(int points)
@@ -95,10 +129,7 @@ public class GameManager : MonoBehaviour
 
     public void Explode()
     {
-        foreach (var s in spawners)
-        {
-            s.enabled = false;
-        }
+        spawner.enabled = false;
         StartCoroutine(ExplodeSequence());
     }
 

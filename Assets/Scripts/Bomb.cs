@@ -1,19 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
-public class Bomb : MonoBehaviour
+public class Bomb : Item
 {
-    private Outline outline;
-    private Collider bombCollider;
+//    private Item item;
 
-    private void Awake()
-    {
-        bombCollider = GetComponent<Collider>();
-        outline = GetComponent<Outline>();
-        outline.enabled = false;
-    }
 
-    void OnMouseDown()
+    protected override void OnItemSelect()
     {
         StartCoroutine(Explode());
     }
@@ -21,7 +14,10 @@ public class Bomb : MonoBehaviour
     private IEnumerator Explode()
     {
         outline.enabled = true;
-        bombCollider.enabled = false;
+        fruitCollider.enabled = false;
+        whole.SetActive(false);
+
+        juiceEffect.Play();
         yield return new WaitForSecondsRealtime(0.5f);
         GameManager.Instance.Explode();
     }

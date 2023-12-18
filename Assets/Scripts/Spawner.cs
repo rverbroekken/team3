@@ -6,8 +6,9 @@ public class Spawner : MonoBehaviour
 {
     private Collider spawnArea;
 
-    public GameObject[] fruitPrefabs;
-    public GameObject bombPrefab;
+    public Item[] fruitPrefabs;
+    public Item bombPrefab;
+
     [Range(0f, 1f)] public float bombChance = 0.05f;
 
     public float startY = -15f;
@@ -46,13 +47,14 @@ public class Spawner : MonoBehaviour
         StopAllCoroutines();
     }
 
+
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(2f);
 
         while (enabled)
         {
-            GameObject prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
+            var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
             if (Random.value < bombChance) 
             {
                 prefab = bombPrefab;
@@ -73,12 +75,16 @@ public class Spawner : MonoBehaviour
 
             Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
 
-            GameObject fruit = Instantiate(prefab, position, rotation);
-            Destroy(fruit, maxLifetime);
+            var item = Instantiate(prefab, position, rotation);
+            item.OnSelect += GameManager.Instance.OnFruitSelect;
+
+            var scale = Random.Range(item.minScale * 1000, item.maxScale * 1000) / 1000f;
+            item.transform.localScale = item.originalScale * scale;
+            Destroy(item.gameObject, maxLifetime);
 
             float force = Random.Range(minForce, maxForce);
-            var body = fruit.GetComponent<Rigidbody>();
-            body.AddForce(fruit.transform.up * force, ForceMode.Impulse);
+            var body = item.GetComponent<Rigidbody>();
+            body.AddForce(item.transform.up * force, ForceMode.Impulse);
 
             var xr = Random.Range(minXRotation * 1000, maxXRotation * 1000) / 1000f;
             var yr = Random.Range(minYRotation * 1000, maxYRotation * 1000) / 1000f;

@@ -5053,6 +5053,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whole: {fileID: 8763740054025600018}
   camera: {fileID: 5070596212828217375}
+  minScale: 0.9
+  maxScale: 1.1
+  fruitRigidbody: {fileID: 0}
+  fruitCollider: {fileID: 0}
+  juiceEffect: {fileID: 0}
+  outline: {fileID: 0}
   points: 1
 --- !u!54 &3266447441071319141
 Rigidbody:
@@ -5095,7 +5101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
-  outlineWidth: 6
+  outlineWidth: 1
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
