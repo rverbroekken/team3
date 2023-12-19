@@ -76,23 +76,29 @@ public class GameManager : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
+    Texture2D toTexture2D(RenderTexture rTex)
+    {
+        Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.ARGB32, false);
+        // ReadPixels looks at the active RenderTexture.
+        RenderTexture.active = rTex;
+        tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
+        tex.Apply();
+        return tex;
+    }
+
     void CreateRenderTextures()
     {
-        float x = 0;
         foreach (var fruit in spawner.fruitPrefabs)
         {
             RenderTexture t = new RenderTexture(renderTextureDescriptor);
-            var item = Instantiate(fruit, new Vector3(40f + x, -40f, 0f), Quaternion.identity);
+            var item = Instantiate(fruit, new Vector3(40f, -40f, 0f), Quaternion.identity);
             var rigidbody = item.GetComponent<Rigidbody>();
             rigidbody.useGravity = false;
             rigidbody.mass = 0;
             item.camera.targetTexture = t;
             item.camera.Render();
-            (fruit as Fruit).texture = t;
-            x += 5f;
-//            tray.AddTexture(t);
-//            Destroy(item.gameObject);
-//          break;
+            (fruit as Fruit).texture = toTexture2D(t);
+            DestroyImmediate(item.gameObject);
         }
     }
 
