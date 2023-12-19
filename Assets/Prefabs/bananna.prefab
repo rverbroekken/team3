@@ -61,28 +61,8 @@ PrefabInstance:
       value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 4591743718950614206, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4591743718950614206, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
-      propertyPath: outlineMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4591743718950614206, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: outlineWidth
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4591743718950614206, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
-      propertyPath: outlineColor.b
-      value: 0.46226418
-      objectReference: {fileID: 0}
-    - target: {fileID: 4591743718950614206, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
-      propertyPath: outlineColor.g
-      value: 0.46226418
-      objectReference: {fileID: 0}
-    - target: {fileID: 4591743718950614206, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
-      propertyPath: outlineColor.r
-      value: 0.46226418
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5006599930210527501, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Mesh
@@ -124,6 +104,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 3c5fb0a73d2a2de4fa1ac35514b96d10, type: 2}
+    - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: type
+      value: Bananna
+      objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: maxScale
       value: 1.2
@@ -190,7 +174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905135, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Name
-      value: bananna
+      value: Bananna
       objectReference: {fileID: 0}
     - target: {fileID: 8763740054025600018, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_IsActive

@@ -47,7 +47,6 @@ public class Spawner : MonoBehaviour
         StopAllCoroutines();
     }
 
-
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(2f);
@@ -93,6 +92,18 @@ public class Spawner : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
         }
+    }
+
+    public Texture2D GetTextureByType(string type)
+    {
+        foreach(var fruit in fruitPrefabs)
+        {
+            if (fruit.type == type)
+            {
+                return (fruit as Fruit).texture;
+            }
+        }
+        return null;
     }
 
 }

@@ -1,8 +1,55 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-using UnityEngine.Experimental.Rendering;
+//using System.Linq;
+//using UnityEngine.Experimental.Rendering;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
+
+public static class ExtensionMethods
+{
+    public static Texture2D toTexture2D(this RenderTexture rTex)
+    {
+        Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.ARGB32, false);
+
+        var old_rt = RenderTexture.active;
+        RenderTexture.active = rTex;
+
+        tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
+        tex.Apply();
+
+        RenderTexture.active = old_rt;
+        return tex;
+    }
+
+
+    public static void Move<T>(this List<T> list, int oldIndex, int newIndex)
+    {
+        T item = list[oldIndex];
+        list.RemoveAt(oldIndex);
+        list.Insert(newIndex, item);
+    }
+
+    public static Vector3 SetX(this Vector3 pos, float x)
+    {
+        return new Vector3(x, pos.y, pos.z);
+    }
+
+    public static void SetLocalX(this Transform t, float x)
+    {
+        t.localPosition = t.localPosition.SetX(x);
+    }
+
+    public static TweenerCore<Vector3, Vector3, VectorOptions> DOLocalMoveXAtSpeed(this Transform t, float destX, float speedPer100)
+    {
+        float d = Mathf.Abs(t.localPosition.x - destX);
+        var duration = (d / 100) * speedPer100;
+        return t.DOLocalMoveX(destX, duration);
+    }
+    
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -17,11 +64,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RenderTexture renderTextureDescriptor;
 
     [SerializeField] private Tray tray;
+    [SerializeField] private MissionsWidget missionsWidget;
+
+    private float prev_aspect;
+    private AudioSource audioData;
 
     private int score;
     public int Score => score;
 
-    private float prev_aspect;
     private void Awake()
     {
         if (Instance != null) {
@@ -30,17 +80,25 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        audioData = GetComponent<AudioSource>();
     }
 
     public void OnFruitSelect(Fruit fruit)
     {
+        if (tray.QueueAddItem(fruit))
+        {
+            IncreaseScore(fruit.points);
+            if (missionsWidget.MatchMade(fruit.type))
+            {
+                // all missions done
+                Explode();
+                return;
+            }
+        }
+
         if (tray.IsFull())
         {
             Explode();
-        }
-        else
-        {
-            tray.AddItem(fruit);
         }
     }
 
@@ -74,16 +132,11 @@ public class GameManager : MonoBehaviour
 
         score = 0;
         scoreText.text = score.ToString();
-    }
 
-    Texture2D toTexture2D(RenderTexture rTex)
-    {
-        Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.ARGB32, false);
-        // ReadPixels looks at the active RenderTexture.
-        RenderTexture.active = rTex;
-        tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
-        tex.Apply();
-        return tex;
+        audioData.Play(0);
+
+        missionsWidget.AddMission("Apple", 5, spawner.GetTextureByType("Apple"));
+        missionsWidget.AddMission("Bananna", 3, spawner.GetTextureByType("Bananna"));
     }
 
     void CreateRenderTextures()
@@ -95,9 +148,10 @@ public class GameManager : MonoBehaviour
             var rigidbody = item.GetComponent<Rigidbody>();
             rigidbody.useGravity = false;
             rigidbody.mass = 0;
-            item.camera.targetTexture = t;
-            item.camera.Render();
-            (fruit as Fruit).texture = toTexture2D(t);
+            item.itemCamera.gameObject.SetActive(true);
+            item.itemCamera.targetTexture = t;
+            item.itemCamera.Render();
+            (fruit as Fruit).texture = t.toTexture2D();
             DestroyImmediate(item.gameObject);
         }
     }
@@ -116,6 +170,7 @@ public class GameManager : MonoBehaviour
             Destroy(bomb.gameObject);
         }
 
+        missionsWidget.Clear();
         tray.Clear();
     }
 
@@ -135,8 +190,15 @@ public class GameManager : MonoBehaviour
 
     public void Explode()
     {
+        Item[] items = FindObjectsOfType<Item>();
+        foreach (Item item in items)
+        {
+            item.Disable();
+        }
+
         spawner.enabled = false;
         StartCoroutine(ExplodeSequence());
+
     }
 
     private IEnumerator ExplodeSequence()

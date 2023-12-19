@@ -53,13 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whole: {fileID: 737267348992330642}
-  camera: {fileID: 1304837884144462850}
+  itemCamera: {fileID: 0}
   minScale: 0.9
   maxScale: 1.1
-  fruitRigidbody: {fileID: 0}
-  fruitCollider: {fileID: 0}
-  juiceEffect: {fileID: 0}
-  outline: {fileID: 0}
+  type: Bomb
+  originalScale: {x: 0, y: 0, z: 0}
 --- !u!54 &6841112139972370405
 Rigidbody:
   m_ObjectHideFlags: 0

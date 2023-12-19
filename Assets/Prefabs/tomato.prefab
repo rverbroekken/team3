@@ -101,6 +101,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: type
+      value: Tomato
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: maxScale
       value: 1.3
       objectReference: {fileID: 0}
@@ -162,7 +166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905135, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Name
-      value: tomato
+      value: Tomato
       objectReference: {fileID: 0}
     - target: {fileID: 9093774411436221012, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Mesh

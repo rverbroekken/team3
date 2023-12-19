@@ -125,6 +125,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: ab4bead6eb712bc45acee70c9dd4c2c6, type: 2}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: type
+      value: Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: maxScale
       value: 1.5
       objectReference: {fileID: 0}
@@ -190,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905135, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Name
-      value: fish
+      value: Fish
       objectReference: {fileID: 0}
     - target: {fileID: 9093774411436221012, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Mesh

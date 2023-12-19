@@ -129,6 +129,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: type
+      value: Apple
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: sliced
       value: 
       objectReference: {fileID: 0}
@@ -216,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
-  outlineWidth: 6
+  outlineWidth: 0.3
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
