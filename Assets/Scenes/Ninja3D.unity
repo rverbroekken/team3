@@ -191,11 +191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fruitPrefabs:
   - {fileID: 1345022896480124040, guid: 3dadd027689a1c14991f4bb5957995ac, type: 3}
-  - {fileID: 1345022896480124040, guid: 92944fff04e663d4ab1abfaf4b10c54e, type: 3}
-  - {fileID: 1345022896480124040, guid: aef05b74b777de14b8eb43663905479d, type: 3}
-  - {fileID: 1345022896480124040, guid: 8c2a5138aed4e08469bb71ee12b6cc75, type: 3}
-  - {fileID: 1345022896480124040, guid: f4e26733f5988b14f8fc477b9ae02478, type: 3}
-  - {fileID: 1345022896480124040, guid: bfd686b73856d1045ac53345402c483a, type: 3}
   bombPrefab: {fileID: 502755466114576480, guid: d99c48bb415f49e47980e58f71e639bb, type: 3}
   bombChance: 0.068
   startY: -12

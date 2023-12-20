@@ -25,7 +25,7 @@ public class MissionWidget : MonoBehaviour
         UpdateValues();
     }
 
-    public bool MatchMade(string type)
+    public bool ItemToTray(string type)
     {
         if (type == fruitType)
         {
@@ -35,6 +35,15 @@ public class MissionWidget : MonoBehaviour
         return this.amount <= 0;
     }
 
+    public void ItemFromTray(string type)
+    {
+        if (type == fruitType)
+        {
+            this.amount += 1;
+            UpdateValues();
+        }
+    }
+    
     private void UpdateValues()
     {
         amountLabel.text = amount.ToString();

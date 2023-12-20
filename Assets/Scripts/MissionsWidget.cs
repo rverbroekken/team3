@@ -20,16 +20,25 @@ public class MissionsWidget : MonoBehaviour
         missionWidgets.Add(item);
     }
 
-    public bool MatchMade(string type)
+    public bool ItemToTray(string type)
     {
         foreach (var item in missionWidgets)
         {
-            if (item.MatchMade(type))
+            if (item.ItemToTray(type))
             {
                 // mission done
                 missionWidgets.Remove(item);
                 return missionWidgets.Count == 0;
             }
+        }
+        return false;
+    }
+
+    public bool ItemFromTray(string type)
+    {
+        foreach (var item in missionWidgets)
+        {
+            item.ItemFromTray(type);
         }
         return false;
     }

@@ -36,7 +36,7 @@ public class Item : MonoBehaviour
     void Awake()
     {
         fruitRigidbody = GetComponent<Rigidbody>();
-        fruitCollider = GetComponent<Collider>();
+        fruitCollider = GetComponentInChildren<Collider>();
         outline = GetComponent<Outline>();
         juiceEffect = GetComponentInChildren<ParticleSystem>();
         originalScale = transform.localScale;

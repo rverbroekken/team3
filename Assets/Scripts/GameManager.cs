@@ -36,11 +36,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelData[] levels;
 
     private float prev_aspect;
-    private AudioSource audioData;
-
-    private int score;
-    public int Score => score;
-
+    private AudioSource audioData;    
+    
     private void Awake()
     {
         if (Instance != null) {
@@ -56,18 +53,24 @@ public class GameManager : MonoBehaviour
     {
         if (tray.QueueAddItem(fruit))
         {
-            IncreaseScore(1);
-            if (missionsWidget.MatchMade(fruit.type))
-            {
-                // all missions done
-                Explode();
-                return;
-            }
+            // match of 3 made
+
         }
 
         if (tray.IsFull())
         {
             Explode();
+        }
+        else
+        {
+            if (missionsWidget.ItemToTray(fruit.type))
+            {
+                // all missions done
+
+                // wait for anim to be done before level end
+                Explode();
+                return;
+            }
         }
     }
 
@@ -99,13 +102,10 @@ public class GameManager : MonoBehaviour
 
         spawner.enabled = true;
 
-        score = 0;
-        scoreText.text = score.ToString();
-
         audioData.Play(0);
 
-        missionsWidget.AddMission("Apple", 5, spawner.GetTextureByType("Apple"));
-        missionsWidget.AddMission("Bananna", 3, spawner.GetTextureByType("Bananna"));
+        missionsWidget.AddMission("apple", 5, spawner.GetTextureByType("apple"));
+//        missionsWidget.AddMission("Bananna", 3, spawner.GetTextureByType("Bananna"));
     }
 
     void CreateRenderTextures()
@@ -141,20 +141,6 @@ public class GameManager : MonoBehaviour
 
         missionsWidget.Clear();
         tray.Clear();
-    }
-
-    public void IncreaseScore(int points)
-    {
-        score += points;
-        scoreText.text = score.ToString();
-
-        float hiscore = PlayerPrefs.GetFloat("hiscore", 0);
-
-        if (score > hiscore)
-        {
-            hiscore = score;
-            PlayerPrefs.SetFloat("hiscore", hiscore);
-        }
     }
 
     public void Explode()
