@@ -16,9 +16,6 @@ public class Spawner : MonoBehaviour
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
 
-    public float minForce = 18f;
-    public float maxForce = 22f;
-
     private float maxLifetime = 5f;
     private int numLayers = 100;
     private float minX = -5f;
@@ -71,11 +68,9 @@ public class Spawner : MonoBehaviour
             var item = Instantiate(prefab, position, rotation);
             item.OnSelect += GameManager.Instance.OnFruitSelect;
 
-            var scale = Random.Range(item.minScale * 1000, item.maxScale * 1000) / 1000f;
-            item.transform.localScale = item.originalScale * scale;
             Destroy(item.gameObject, maxLifetime);
 
-            float force = Random.Range(minForce, maxForce);
+            float force = Random.Range(item.minForce, item.maxForce);
             var body = item.GetComponent<Rigidbody>();
             body.AddForce(item.transform.up * force, ForceMode.Impulse);
 

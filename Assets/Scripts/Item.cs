@@ -11,10 +11,6 @@ public class Item : MonoBehaviour
     public AudioClip m_SpawnSound;
     public AudioClip m_TapSound;
 
-    [Header("Scale Settings")]
-    public float minScale = 0.9f;
-    public float maxScale = 1.1f;
-
     [Header("Rotation Settings")]
     public float minXRotation = -1f;
     public float minYRotation = -1f;
@@ -22,6 +18,11 @@ public class Item : MonoBehaviour
     public float maxXRotation = 1f;
     public float maxYRotation = 1f;
     public float maxZRotation = 1f;
+
+    [Header("Force Settings")]
+    public float minForce = 18f;
+    public float maxForce = 22f;
+
 
     [HideInInspector] public Vector3 originalScale;
 

@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Tray tray;
     [SerializeField] private MissionsWidget missionsWidget;
 
+    [Header("Levels")]
+    [SerializeField] private LevelData[] levels;
+
     private float prev_aspect;
     private AudioSource audioData;
 
@@ -53,7 +56,7 @@ public class GameManager : MonoBehaviour
     {
         if (tray.QueueAddItem(fruit))
         {
-            IncreaseScore(fruit.points);
+            IncreaseScore(1);
             if (missionsWidget.MatchMade(fruit.type))
             {
                 // all missions done

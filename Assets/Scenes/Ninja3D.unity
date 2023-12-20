@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43632814, g: 0.47471273, b: 0.5147158, a: 1}
+  m_IndirectSpecularColor: {r: 0.43369657, g: 0.47157705, b: 0.51242584, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -201,8 +201,6 @@ MonoBehaviour:
   startY: -12
   minSpawnDelay: 0.1
   maxSpawnDelay: 0.55
-  minForce: 17
-  maxForce: 21
 --- !u!1 &562293975
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +765,8 @@ MonoBehaviour:
   renderTextureDescriptor: {fileID: 8400000, guid: 7a25ed56e69e61246b08006d771f8150, type: 2}
   tray: {fileID: 1157990549}
   missionsWidget: {fileID: 592300244}
+  levels:
+  - {fileID: 11400000, guid: 6102417994289a04da373520625d4072, type: 2}
 --- !u!82 &1442567887
 AudioSource:
   m_ObjectHideFlags: 0
