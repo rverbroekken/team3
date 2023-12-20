@@ -118,12 +118,12 @@ public class LevelDataEditor : Editor
 
         abilityList.onAddDropdownCallback = (Rect buttonRect, ReorderableList l) => {
             var menu = new GenericMenu();
-            var guids = AssetDatabase.FindAssets("", new[] { "Assets/CardAbility" });
+            var guids = AssetDatabase.FindAssets("", new[] { "Assets/ItemsData" });
             foreach (var guid in guids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
                 var type = AssetDatabase.LoadAssetAtPath(path, typeof(UnityEngine.Object));
-                if (type.name == "CardAbility")
+                if (type.name == "LevelAbility")
                 {
                     continue;
                 }
@@ -179,6 +179,9 @@ public class LevelDataEditor : Editor
                     Object.DestroyImmediate(assets[i], true);
                 }
             }
+
+            // You needed to add this line here otherwise it keeps destroyed objects in the array.
+            abilityList.serializedProperty.ClearArray();
             AssetDatabase.SaveAssets();
         }
 

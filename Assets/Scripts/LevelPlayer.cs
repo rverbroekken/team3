@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// HealPlayer.cs
+[CreateAssetMenu(fileName = "LevelPlayer", menuName = "Levels/LevelPlayer", order = 1)]
 public class LevelPlayer : LevelAbility
 {
     public int healAmount = 10;

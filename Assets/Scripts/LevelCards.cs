@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// DrawCards.cs
+[CreateAssetMenu(fileName = "LevelCards", menuName = "Levels/LevelCards", order = 1)]
 public class LevelCards : LevelAbility
 {
     public int numCards = 1;

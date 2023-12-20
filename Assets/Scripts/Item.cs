@@ -5,12 +5,17 @@ public class Item : MonoBehaviour
 {
     public GameObject whole;
     public Camera itemCamera;
-
     public string type = "";
 
+    [Header("Sound Settings")]
+    public AudioClip m_SpawnSound;
+    public AudioClip m_TapSound;
+
+    [Header("Scale Settings")]
     public float minScale = 0.9f;
     public float maxScale = 1.1f;
 
+    [Header("Rotation Settings")]
     public float minXRotation = -1f;
     public float minYRotation = -1f;
     public float minZRotation = -1f;
