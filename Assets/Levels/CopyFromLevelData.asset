@@ -155,8 +155,11 @@ MonoBehaviour:
   m_Name: CopyFromLevelData
   m_EditorClassIdentifier: 
   description: 
+  levelTimeInSeconds: 180
   minSpawnDelay: 0.25
   maxSpawnDelay: 1
+  minSpawnX: -8.3
+  maxSpawnX: 7.22
   bombs:
   - {fileID: -4141823971611978560}
   - {fileID: 0}

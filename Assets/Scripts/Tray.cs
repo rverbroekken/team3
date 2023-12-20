@@ -11,6 +11,9 @@ public class Tray : MonoBehaviour
     public int currentItemIndexForAnimation = 0;
     public int finalItemIndex = 0;
 
+    public bool IsAnimating => animCounter > 0;
+
+    int animCounter = 0;
     static private float[] xPositions = { -450f, -300f, -150f, 0f, 150f, 300f, 450f };
     const float moveMatchSpeed = .07f;
     const float moveItemSpeed = .07f;
@@ -54,46 +57,6 @@ public class Tray : MonoBehaviour
         return (false, 0);
     }
     
-    /*
-        public bool AddItem(Fruit fruit)
-        {
-            trayItems[currentItem].SetFruit(fruit);
-
-            int newItemPos = currentItem;
-            for (var i = currentItem - 1; i >= 0; i--)
-            {
-                if (trayItems[i].fruitType == trayItems[currentItem].fruitType)
-                {
-                    if (i < currentItem - 1)
-                    {
-                        newItemPos = i + 1;
-                        trayItems.Move(currentItem, newItemPos);
-                    }
-                    break;
-                }
-            }
-
-            trayItems[newItemPos].gameObject.SetActive(true);
-
-            List<TrayItem> items = new List<TrayItem>(trayItems);
-            var hasMatch = HasMatch();
-            if (hasMatch.result)
-            {
-                for (int i = hasMatch.index - 2; i <= hasMatch.index; i++)
-                {
-                    trayItems[i].gameObject.SetActive(false);
-                }
-                for (int i = hasMatch.index + 1; i <= currentItem; i++)
-                {
-                    trayItems.Move(i, i - 3);
-                }
-                currentItem -= 3;
-            }
-            ResetPositions(trayItems);
-            currentItem += 1;
-        }
-    */
-
     public bool CalculateCurrentMatch(string type)
     {
         finalItems[finalItemIndex] = type;
@@ -125,7 +88,7 @@ public class Tray : MonoBehaviour
 
         return hasMatch.result;
     }
-
+    
 
     public bool QueueAddItem(Fruit fruit)
     {
@@ -135,6 +98,7 @@ public class Tray : MonoBehaviour
 
     private IEnumerator CoQueueAddItem(Fruit fruit)
     {
+        animCounter += 1;
         Texture2D texture = fruit.texture;
         string type = fruit.type;
         while (itemsSequence.active)
@@ -142,9 +106,8 @@ public class Tray : MonoBehaviour
             yield return null;
         }
         itemsSequence = DOTween.Sequence();
-        AddItem(texture, type);
+        AddItem(texture, type).AppendCallback(() => animCounter -= 1);
     }
-
 
     public Sequence AddItem(Texture2D texture, string fruitType)
     {
@@ -244,8 +207,7 @@ public class Tray : MonoBehaviour
 
     public void Clear()
     {
-//        itemsSequence.Kill();
-
+        itemsSequence.Kill();
         foreach (var item in trayItems)
         {
             item.ResetItem();

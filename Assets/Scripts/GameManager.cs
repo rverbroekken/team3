@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 //using System.Linq;
 //using UnityEngine.Experimental.Rendering;
 
@@ -36,9 +37,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelData[] levels;
     [SerializeField] private int levelIdx = 0;
 
-    private LevelData activeLevelData;
+    private LevelData activeLevelData = null;
     private float prev_aspect;
     private AudioSource audioData;    
+    private float levelDuration;
     
     private void Awake()
     {
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour
 
         if (tray.IsFull())
         {
-            Explode();
+            LevelLost();
         }
         else
         {
@@ -70,7 +72,8 @@ public class GameManager : MonoBehaviour
                 // all missions done
 
                 // wait for anim to be done before level end
-                Explode();
+                levelIdx = Mathf.Min(levels.Length, levelIdx + 1);
+                LevelWon();
                 return;
             }
         }
@@ -93,6 +96,18 @@ public class GameManager : MonoBehaviour
             mainCamera.orthographicSize = size;
             spawner.transform.position = new Vector3(spawner.transform.position.x, spawner.startY + (10f - size), spawner.transform.position.z);
         }
+
+        if (activeLevelData)
+        {
+            levelDuration = Mathf.Max(0, levelDuration - Time.deltaTime);
+            TimeSpan t = TimeSpan.FromSeconds(levelDuration);
+            scoreText.text = t.ToString(@"mm\:ss");
+            if (levelDuration == 0)
+            {
+                LevelLost();
+            }
+        }
+        
     }
 
     private void NewGame()
@@ -103,6 +118,7 @@ public class GameManager : MonoBehaviour
 
         levelIdx = Mathf.Min(levelIdx, levels.Length - 1);
         activeLevelData = levels[levelIdx];
+        levelDuration = activeLevelData.levelTimeInSeconds;
 
         CreateRenderTextures();
 
@@ -110,6 +126,7 @@ public class GameManager : MonoBehaviour
 
         spawner.NewGame(activeLevelData);
         missionsWidget.NewGame(activeLevelData);
+        Update();
     }
 
     void CreateRenderTextures()
@@ -151,24 +168,38 @@ public class GameManager : MonoBehaviour
         tray.Clear();
     }
 
-    public void Explode()
+    private void DisableLevel()
     {
         Item[] items = FindObjectsOfType<Item>();
         foreach (Item item in items)
         {
             item.Disable();
         }
-
         spawner.enabled = false;
-        StartCoroutine(ExplodeSequence());
+        activeLevelData = null;
+    }
 
+    public void LevelLost()
+    {
+        DisableLevel();
+        StartCoroutine(ExplodeSequence());
+    }
+
+    private void LevelWon()
+    {
+        DisableLevel();            
+        StartCoroutine(ExplodeSequence());
     }
 
     private IEnumerator ExplodeSequence()
     {
+        while (tray.IsAnimating)
+        {
+            yield return null;
+        }
+
         float elapsed = 0f;
         float duration = 0.5f;
-
         // Fade to white
         while (elapsed < duration)
         {

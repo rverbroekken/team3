@@ -23,8 +23,6 @@ public class Spawner : MonoBehaviour
     private float maxX = 5f;
     private int index = 0;
 
-//    private LevelData LevelData;
-
     private void Awake()
     {
         spawnArea = GetComponent<BoxCollider>();
@@ -44,6 +42,8 @@ public class Spawner : MonoBehaviour
     {
         minSpawnDelay = levelData.minSpawnDelay;
         maxSpawnDelay = levelData.maxSpawnDelay;
+//        minX = levelData.minSpawnX;
+//        maxX = levelData.maxSpawnX;
         foreach (var fruitData in levelData.fruit)
         {
             if (fruitData)
@@ -72,7 +72,7 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        
+        float factor = (7f / 5f);
         while (enabled)
         {
             var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Count)];
@@ -90,6 +90,14 @@ public class Spawner : MonoBehaviour
 
             index = (index + 1) % numLayers;
 
+            /*            
+                        float minX1 = factor * minX;
+                        float minX2 = factor * (-minX - 5);
+                        float maxX1 = factor * (5 - maxX);
+                        float maxX2 = factor * maxX;
+                        var minAngle = Mathf.Lerp(minX1, maxX1, f);
+                        var maxAngle = Mathf.Lerp(minX2, maxX2, f);
+            */
             var f = Mathf.InverseLerp(minX, maxX, position.x);
             var minAngle = Mathf.Lerp(-7, 0, f);
             var maxAngle = Mathf.Lerp(0, 7, f);

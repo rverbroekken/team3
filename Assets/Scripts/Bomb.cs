@@ -19,7 +19,7 @@ public class Bomb : Item
 
         juiceEffect.Play();
         yield return new WaitForSecondsRealtime(0.5f);
-        GameManager.Instance.Explode();
+        GameManager.Instance.LevelLost();
     }
 }
 
