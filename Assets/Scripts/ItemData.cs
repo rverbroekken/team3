@@ -11,6 +11,6 @@ public class ItemData : ScriptableObject
     [Range(-2f, 2f)] public float maxZRotation = 1f;
 
     [Header("Force Settings")]
-    [Range(15f, 23f)] public float minForce = 18f;
-    [Range(15f, 23f)] public float maxForce = 22f;
+    [Range(15f, 23f)] public float minForce = 16f;
+    [Range(15f, 23f)] public float maxForce = 21f;
 }
