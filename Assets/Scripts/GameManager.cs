@@ -34,7 +34,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Levels")]
     [SerializeField] private LevelData[] levels;
+    [SerializeField] private int levelIdx = 0;
 
+    private LevelData activeLevelData;
     private float prev_aspect;
     private AudioSource audioData;    
     
@@ -98,30 +100,35 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         ClearScene();
-        CreateRenderTextures();
 
-        spawner.enabled = true;
+        levelIdx = Mathf.Min(levelIdx, levels.Length - 1);
+        activeLevelData = levels[levelIdx];
+
+        CreateRenderTextures();
 
         audioData.Play(0);
 
-        missionsWidget.AddMission("apple", 5, spawner.GetTextureByType("apple"));
-//        missionsWidget.AddMission("Bananna", 3, spawner.GetTextureByType("Bananna"));
+        spawner.NewGame(activeLevelData);
+        missionsWidget.NewGame(activeLevelData);
     }
 
     void CreateRenderTextures()
     {
-        foreach (var fruit in spawner.fruitPrefabs)
+        foreach (var fruitData in activeLevelData.fruit)
         {
-            RenderTexture t = new RenderTexture(renderTextureDescriptor);
-            var item = Instantiate(fruit, new Vector3(40f, -40f, 0f), Quaternion.identity);
-            var rigidbody = item.GetComponent<Rigidbody>();
-            rigidbody.useGravity = false;
-            rigidbody.mass = 0;
-            item.itemCamera.gameObject.SetActive(true);
-            item.itemCamera.targetTexture = t;
-            item.itemCamera.Render();
-            (fruit as Fruit).texture = t.toTexture2D();
-            DestroyImmediate(item.gameObject);
+            if (fruitData)
+            {
+                RenderTexture t = new RenderTexture(renderTextureDescriptor);
+                var item = Instantiate(fruitData.fruit, new Vector3(40f, -40f, 0f), Quaternion.identity);
+                var rigidbody = item.GetComponent<Rigidbody>();
+                rigidbody.useGravity = false;
+                rigidbody.mass = 0;
+                item.itemCamera.gameObject.SetActive(true);
+                item.itemCamera.targetTexture = t;
+                item.itemCamera.Render();
+                (fruitData.fruit as Fruit).texture = t.toTexture2D();
+                DestroyImmediate(item.gameObject);
+            }
         }
     }
 
@@ -139,6 +146,7 @@ public class GameManager : MonoBehaviour
             Destroy(bomb.gameObject);
         }
 
+        spawner.Clear();
         missionsWidget.Clear();
         tray.Clear();
     }

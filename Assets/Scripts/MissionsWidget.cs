@@ -12,7 +12,23 @@ public class MissionsWidget : MonoBehaviour
     {
     }
 
-    public void AddMission(string type, int amount, Texture2D texture)
+    public void NewGame(LevelData levelData)
+    {
+        foreach (var fruitData in levelData.fruit)
+        {
+            if (fruitData?.isGoalItem == true)
+            {
+                var goal = fruitData.goalAmount;
+                if (goal <= 0)
+                {
+                    goal = fruitData.amount;
+                }
+                AddMission(fruitData.fruit.type, goal * 3, fruitData.fruit.texture);
+            }
+        }
+
+    }
+    private void AddMission(string type, int amount, Texture2D texture)
     {
         var item = Instantiate(prefab, transform);
         item.transform.SetLocalX(missionWidgets.Count * 220f);

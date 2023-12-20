@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -6,8 +7,8 @@ public class Spawner : MonoBehaviour
 {
     private Collider spawnArea;
 
-    public Item[] fruitPrefabs;
-    public Item bombPrefab;
+    public List<Item> fruitPrefabs = new List<Item>();
+    public List<Item> bombPrefabs = new List<Item>();
 
     [Range(0f, 1f)] public float bombChance = 0.05f;
 
@@ -21,6 +22,8 @@ public class Spawner : MonoBehaviour
     private float minX = -5f;
     private float maxX = 5f;
     private int index = 0;
+
+//    private LevelData LevelData;
 
     private void Awake()
     {
@@ -37,6 +40,34 @@ public class Spawner : MonoBehaviour
         StopAllCoroutines();
     }
 
+    public void NewGame(LevelData levelData)
+    {
+        minSpawnDelay = levelData.minSpawnDelay;
+        maxSpawnDelay = levelData.maxSpawnDelay;
+        foreach (var fruitData in levelData.fruit)
+        {
+            if (fruitData)
+            {
+                fruitPrefabs.Add(fruitData.fruit);
+            }
+        }
+        foreach (var bombData in levelData.bombs)
+        {
+            if (bombData)
+            {
+                bombPrefabs.Add(bombData.bomb);
+            }
+        }
+        enabled = true;
+    }
+
+    public void Clear()
+    {
+        fruitPrefabs.Clear();
+        bombPrefabs.Clear();
+        enabled = false;
+    }
+
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(2f);
@@ -44,10 +75,10 @@ public class Spawner : MonoBehaviour
         
         while (enabled)
         {
-            var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
-            if (Random.value < bombChance) 
+            var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Count)];
+            if (Random.value < bombChance && bombPrefabs.Count > 0) 
             {
-                prefab = bombPrefab;
+                prefab = bombPrefabs[Random.Range(0, bombPrefabs.Count)];
             }
 
             Vector3 position = new Vector3
