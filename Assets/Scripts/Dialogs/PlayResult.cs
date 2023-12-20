@@ -12,9 +12,16 @@ public class PlayResult : MonoBehaviour
     public TextMeshProUGUI m_Header;
     public TextMeshProUGUI m_Description;
 
+    public void Show(int numStars, int levelIdx, string description)
+    {
+        gameObject.SetActive(true);
+
+    }
+
     public void OnContinue()
     {
-
+        gameObject.SetActive(false);
+        GameManager.Instance.NewGame();
     }
 }
 

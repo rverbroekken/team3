@@ -25,13 +25,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Spawner spawner;
 
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Image fadeImage;
 
     [SerializeField] private RenderTexture renderTextureDescriptor;
 
+    [Header("Items")]
+    [SerializeField] private Text timerText;
     [SerializeField] private Tray tray;
     [SerializeField] private MissionsWidget missionsWidget;
+
+    [Header("Dialogs")]
+    [SerializeField] private PlayResult playResultDialog;
+    [SerializeField] private Image fadeImage;
 
     [Header("Levels")]
     [SerializeField] private LevelData[] levels;
@@ -51,6 +55,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         audioData = GetComponent<AudioSource>();
+        playResultDialog.gameObject.SetActive(false);
     }
 
     public void OnFruitSelect(Fruit fruit)
@@ -97,11 +102,11 @@ public class GameManager : MonoBehaviour
             spawner.transform.position = new Vector3(spawner.transform.position.x, spawner.startY + (10f - size), spawner.transform.position.z);
         }
 
-        if (activeLevelData)
+        if (spawner.enabled)
         {
             levelDuration = Mathf.Max(0, levelDuration - Time.deltaTime);
             TimeSpan t = TimeSpan.FromSeconds(levelDuration);
-            scoreText.text = t.ToString(@"mm\:ss");
+            timerText.text = t.ToString(@"mm\:ss");
             if (levelDuration == 0)
             {
                 LevelLost();
@@ -110,7 +115,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void NewGame()
+    public void NewGame()
     {
         Time.timeScale = 1f;
 
@@ -176,7 +181,6 @@ public class GameManager : MonoBehaviour
             item.Disable();
         }
         spawner.enabled = false;
-        activeLevelData = null;
     }
 
     public void LevelLost()
@@ -188,7 +192,21 @@ public class GameManager : MonoBehaviour
     private void LevelWon()
     {
         DisableLevel();            
-        StartCoroutine(ExplodeSequence());
+        StartCoroutine(LevelWonSequence());
+    }
+
+    private IEnumerator LevelWonSequence()
+    {
+        while (tray.IsAnimating)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(0.2f);
+
+        int numStars = ((int)levelDuration / (activeLevelData.levelTimeInSeconds / 3)) + 1;
+        playResultDialog.Show(numStars, levelIdx-1, activeLevelData.description);
+        activeLevelData = null;
     }
 
     private IEnumerator ExplodeSequence()
@@ -213,6 +231,8 @@ public class GameManager : MonoBehaviour
         }
 
         yield return new WaitForSecondsRealtime(1f);
+
+        activeLevelData = null;
 
         NewGame();
 
