@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "LevelData", menuName = "Levels/LevelData", order = 1)]
 public class LevelData : ScriptableObject
 {
-    public enum LevelType
+   public enum LevelType
     {
         Attack,
         Skill
@@ -17,5 +17,5 @@ public class LevelData : ScriptableObject
 
     // XXX: Hidden in inspector because it will be drawn by custom Editor.
     [HideInInspector]
-    public CardAbility[] onPlayed;
+    public LevelAbility[] onPlayed;
 }

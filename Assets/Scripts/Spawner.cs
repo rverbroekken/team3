@@ -12,24 +12,17 @@ public class Spawner : MonoBehaviour
     [Range(0f, 1f)] public float bombChance = 0.05f;
 
     public float startY = -15f;
+
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
-
-    public float minX = -5f;
-    public float maxX = 5f;
 
     public float minForce = 18f;
     public float maxForce = 22f;
 
-    public float minXRotation = -1f;
-    public float minYRotation = -1f;
-    public float minZRotation = -1f;
-    public float maxXRotation = 1f;
-    public float maxYRotation = 1f;
-    public float maxZRotation = 1f;
-
-    public float maxLifetime = 5f;
-
+    private float maxLifetime = 5f;
+    private int numLayers = 100;
+    private float minX = -5f;
+    private float maxX = 5f;
     private int index = 0;
 
     private void Awake()
@@ -51,6 +44,7 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        
         while (enabled)
         {
             var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
@@ -63,10 +57,10 @@ public class Spawner : MonoBehaviour
             {
                 x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
                 y = Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y),
-                z = index * -4f
+                z = (index) * -3f
             };
 
-            index = (index + 1) % 100;
+            index = (index + 1) % numLayers;
 
             var f = Mathf.InverseLerp(minX, maxX, position.x);
             var minAngle = Mathf.Lerp(-7, 0, f);
@@ -85,9 +79,9 @@ public class Spawner : MonoBehaviour
             var body = item.GetComponent<Rigidbody>();
             body.AddForce(item.transform.up * force, ForceMode.Impulse);
 
-            var xr = Random.Range(minXRotation * 1000, maxXRotation * 1000) / 1000f;
-            var yr = Random.Range(minYRotation * 1000, maxYRotation * 1000) / 1000f;
-            var zr = Random.Range(minZRotation * 1000, maxZRotation * 1000) / 1000f;
+            var xr = Random.Range(item.minXRotation * 1000, item.maxXRotation * 1000) / 1000f;
+            var yr = Random.Range(item.minYRotation * 1000, item.maxYRotation * 1000) / 1000f;
+            var zr = Random.Range(item.minZRotation * 1000, item.maxZRotation * 1000) / 1000f;
             body.AddRelativeTorque(new Vector3(xr, yr, zr), ForceMode.Impulse);
 
             yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));

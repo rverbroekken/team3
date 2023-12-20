@@ -1,55 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
-[CreateAssetMenu(fileName = "LevelData", menuName = "Levels/LevelData", order = 1)]
-public class LevelData : ScriptableObject
-{
-    public enum CardType
-    {
-        Attack,
-        Skill
-    }
-    public CardType type;
-    public Sprite image;
-    public string description;
-
-    // XXX: Hidden in inspector because it will be drawn by custom Editor.
-    [HideInInspector]
-    public CardAbility[] onPlayed;
-}
-
-// CardAbility.cs
-public abstract class LevelAbility : ScriptableObject
-{
-    public abstract void Resolve();
-}
-
-// DrawCards.cs
-public class LevelCards : CardAbility
-{
-    public int numCards = 1;
-    public override void Resolve()
-    {
-//        Deck.instance.DrawCards(numCards);
-    }
-}
-
-// HealPlayer.cs
-public class LevelPlayer : CardAbility
-{
-    public int healAmount = 10;
-    public override void Resolve()
-    {
-//        Player.instance.Heal(healAmount);
-    }
-}
+using UnityEditor;
+using UnityEditorInternal;
+using System.IO;
 
 // CardDataEditor.cs
-[CustomEditor(typeof(CardData))]
+[CustomEditor(typeof(LevelData))]
 [CanEditMultipleObjects]
-public class CardDataEditor : Editor
+public class LevelDataEditor : Editor
 {
     private ReorderableList abilityList;
 
@@ -196,7 +153,7 @@ public class CardDataEditor : Editor
         newAbility.name = type.name;
 
         // Add it to CardData
-        var cardData = (CardData)target;
+        var cardData = (LevelData)target;
         AssetDatabase.AddObjectToAsset(newAbility, cardData);
         AssetDatabase.SaveAssets();
         element.objectReferenceValue = newAbility;
@@ -217,7 +174,7 @@ public class CardDataEditor : Editor
             Object[] assets = AssetDatabase.LoadAllAssetRepresentationsAtPath(path);
             for (int i = 0; i < assets.Length; i++)
             {
-                if (assets[i] is CardAbility)
+                if (assets[i] is LevelAbility)
                 {
                     Object.DestroyImmediate(assets[i], true);
                 }
