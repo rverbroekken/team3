@@ -5061,8 +5061,8 @@ MonoBehaviour:
   maxXRotation: 1
   maxYRotation: 1
   maxZRotation: 1
-  minForce: 18
-  maxForce: 22
+  minForce: 16
+  maxForce: 21
   originalScale: {x: 0, y: 0, z: 0}
   texture: {fileID: 0}
 --- !u!54 &3266447441071319141

@@ -11,19 +11,21 @@ public class Item : MonoBehaviour
     public AudioClip m_SpawnSound;
     public AudioClip m_TapSound;
 
-    [Header("Rotation Settings")]
-    public float minXRotation = -1f;
-    public float minYRotation = -1f;
-    public float minZRotation = -1f;
-    public float maxXRotation = 1f;
-    public float maxYRotation = 1f;
-    public float maxZRotation = 1f;
+    /*
+        [Header("Rotation Settings")]
+        public float minXRotation = -1f;
+        public float minYRotation = -1f;
+        public float minZRotation = -1f;
+        public float maxXRotation = 1f;
+        public float maxYRotation = 1f;
+        public float maxZRotation = 1f;
 
-    [Header("Force Settings")]
-    public float minForce = 18f;
-    public float maxForce = 22f;
+        [Header("Force Settings")]
+        public float minForce = 16f;
+        public float maxForce = 21f;
+    */
 
-
+    [HideInInspector] public ItemData itemData;
     [HideInInspector] public Vector3 originalScale;
 
     protected Rigidbody fruitRigidbody;

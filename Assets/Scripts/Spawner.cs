@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
 
     [Range(0f, 1f)] public float bombChance = 0.05f;
 
-    public float startY = -15f;
+    public float startY = -12f;
 
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
@@ -42,12 +42,11 @@ public class Spawner : MonoBehaviour
     {
         minSpawnDelay = levelData.minSpawnDelay;
         maxSpawnDelay = levelData.maxSpawnDelay;
-//        minX = levelData.minSpawnX;
-//        maxX = levelData.maxSpawnX;
         foreach (var fruitData in levelData.fruit)
         {
             if (fruitData)
             {
+                fruitData.fruit.itemData = fruitData;
                 fruitPrefabs.Add(fruitData.fruit);
             }
         }
@@ -55,6 +54,7 @@ public class Spawner : MonoBehaviour
         {
             if (bombData)
             {
+                bombData.bomb.itemData = bombData;
                 bombPrefabs.Add(bombData.bomb);
             }
         }
@@ -72,7 +72,7 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        float factor = (7f / 5f);
+//        float factor = (7f / 5f);
         while (enabled)
         {
             var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Count)];
@@ -90,14 +90,15 @@ public class Spawner : MonoBehaviour
 
             index = (index + 1) % numLayers;
 
-            /*            
-                        float minX1 = factor * minX;
-                        float minX2 = factor * (-minX - 5);
-                        float maxX1 = factor * (5 - maxX);
-                        float maxX2 = factor * maxX;
-                        var minAngle = Mathf.Lerp(minX1, maxX1, f);
-                        var maxAngle = Mathf.Lerp(minX2, maxX2, f);
-            */
+/*            
+            float minX1 = factor * minX;
+            float minX2 = factor * (-minX - 5);
+            float maxX1 = factor * (5 - maxX);
+            float maxX2 = factor * maxX;
+            var minAngle = Mathf.Lerp(minX1, maxX1, f);
+            var maxAngle = Mathf.Lerp(minX2, maxX2, f);
+*/
+
             var f = Mathf.InverseLerp(minX, maxX, position.x);
             var minAngle = Mathf.Lerp(-7, 0, f);
             var maxAngle = Mathf.Lerp(0, 7, f);
@@ -109,13 +110,13 @@ public class Spawner : MonoBehaviour
 
             Destroy(item.gameObject, maxLifetime);
 
-            float force = Random.Range(item.minForce, item.maxForce);
+            float force = Random.Range(item.itemData.minForce, item.itemData.maxForce);
             var body = item.GetComponent<Rigidbody>();
             body.AddForce(item.transform.up * force, ForceMode.Impulse);
 
-            var xr = Random.Range(item.minXRotation * 1000, item.maxXRotation * 1000) / 1000f;
-            var yr = Random.Range(item.minYRotation * 1000, item.maxYRotation * 1000) / 1000f;
-            var zr = Random.Range(item.minZRotation * 1000, item.maxZRotation * 1000) / 1000f;
+            var xr = Random.Range(item.itemData.minXRotation * 1000, item.itemData.maxXRotation * 1000) / 1000f;
+            var yr = Random.Range(item.itemData.minYRotation * 1000, item.itemData.maxYRotation * 1000) / 1000f;
+            var zr = Random.Range(item.itemData.minZRotation * 1000, item.itemData.maxZRotation * 1000) / 1000f;
             body.AddRelativeTorque(new Vector3(xr, yr, zr), ForceMode.Impulse);
 
             yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
