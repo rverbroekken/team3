@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   spawner: {fileID: 0}
+  backCanvas: {fileID: 0}
+  frontCanvas: {fileID: 0}
   renderTextureDescriptor: {fileID: 8400000, guid: 7a25ed56e69e61246b08006d771f8150, type: 2}
   timerText: {fileID: 0}
   tray: {fileID: 0}
@@ -54,9 +56,13 @@ MonoBehaviour:
   playResultDialog: {fileID: 0}
   fadeImage: {fileID: 0}
   levels:
+  - {fileID: 11400000, guid: ece3b315fd07dd245b3a946658aa4e45, type: 2}
   - {fileID: 11400000, guid: d20c3968e112c6e4ba178a3b0f765900, type: 2}
+  - {fileID: 11400000, guid: ab1cb1d082aa6f74488bc6631ed78eea, type: 2}
+  - {fileID: 11400000, guid: fce73a8fa6c440546b46390490ae9109, type: 2}
+  - {fileID: 11400000, guid: 2e5c0f23e0719934ead9097012603018, type: 2}
+  - {fileID: 11400000, guid: d7d2d225f9d52ba4d9499c539866504c, type: 2}
   levelIdx: 0
-  dummyScore: 0
 --- !u!82 &5541419962027151506
 AudioSource:
   m_ObjectHideFlags: 0

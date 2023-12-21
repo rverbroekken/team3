@@ -18,8 +18,8 @@ MonoBehaviour:
   maxXRotation: 1
   maxYRotation: 1
   maxZRotation: 1
-  minForce: 16
-  maxForce: 21
+  minForce: 17
+  maxForce: 19
   amount: 6
   goalAmount: 0
   isGoalItem: 0
@@ -78,13 +78,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minXRotation: -1
-  minYRotation: -1
+  minYRotation: 0
   minZRotation: -1
   maxXRotation: 1
-  maxYRotation: 1
+  maxYRotation: 0
   maxZRotation: 1
-  minForce: 16
-  maxForce: 21
+  minForce: 15
+  maxForce: 16
   amount: 3
   goalAmount: 3
   isGoalItem: 1
@@ -101,14 +101,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minXRotation: -1
+  minXRotation: 0
   minYRotation: -1
-  minZRotation: -1
+  minZRotation: -2
   maxXRotation: 1
   maxYRotation: 1
-  maxZRotation: 1
-  minForce: 16
-  maxForce: 21
+  maxZRotation: 2
+  minForce: 19
+  maxForce: 20
   amount: 3
   goalAmount: 3
   isGoalItem: 1
@@ -131,7 +131,7 @@ MonoBehaviour:
   maxXRotation: 1
   maxYRotation: 1
   maxZRotation: 1
-  minForce: 16
+  minForce: 19
   maxForce: 21
   amount: 6
   goalAmount: 0
