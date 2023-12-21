@@ -5,27 +5,15 @@ using UnityEngine.UI;
 using System;
 using sgg;
 //using System.Linq;
-//using UnityEngine.Experimental.Rendering;
 
-/*
-[CreateAssetMenu(menuName = "Levels/LevelData")]
-public class LevelData : ScriptableObject
-{
-    [NestedScriptableObjectField]
-    public NestedScriptableObject field;
-    [NestedScriptableObjectList]
-    public List<NestedScriptableObject> list = new List<NestedScriptableObject>();
-}
-*/
-
-public abstract class NestedScriptableObject : ScriptableObject { }
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Spawner spawner;
-
+    [SerializeField] private Canvas backCanvas;
+    [SerializeField] private Canvas frontCanvas;
 
     [SerializeField] private RenderTexture renderTextureDescriptor;
 
@@ -46,7 +34,13 @@ public class GameManager : MonoBehaviour
     private float prev_aspect;
     private AudioSource audioData;    
     private float levelDuration;
-    
+
+    public Camera MainCamera => mainCamera;
+    public Canvas BackCanvas => backCanvas;
+    public Canvas FrontCanvas => frontCanvas;
+
+    private float dummyScore = 0;
+
     private void Awake()
     {
         if (Instance != null) {
@@ -64,7 +58,10 @@ public class GameManager : MonoBehaviour
         if (tray.QueueAddItem(fruit))
         {
             // match of 3 made
-
+            if (!fruit.isGoalItem)
+            {
+                dummyScore += 1;
+            }
         }
 
         if (tray.IsFull())
@@ -113,7 +110,6 @@ public class GameManager : MonoBehaviour
                 LevelLost();
             }
         }
-        
     }
 
     public void NewGame()
@@ -173,6 +169,8 @@ public class GameManager : MonoBehaviour
         spawner.Clear();
         missionsWidget.Clear();
         tray.Clear();
+
+        dummyScore = 0;
     }
 
     private void DisableLevel()
@@ -204,7 +202,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.3f);
 
         int numStars = ((int)levelDuration / (activeLevelData.levelTimeInSeconds / 3)) + 1;
         playResultDialog.Show(numStars, levelIdx-1, activeLevelData.description);

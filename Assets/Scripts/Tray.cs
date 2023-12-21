@@ -16,8 +16,8 @@ public class Tray : MonoBehaviour
 
     int animCounter = 0;
     static private float[] xPositions = { -450f, -300f, -150f, 0f, 150f, 300f, 450f };
-    const float moveMatchSpeed = .07f;
-    const float moveItemSpeed = .07f;
+    const float moveMatchSpeed = .09f;
+    const float moveItemSpeed = .09f;
     const float delay = .15f;
 
     Sequence itemsSequence;
@@ -100,19 +100,18 @@ public class Tray : MonoBehaviour
     private IEnumerator CoQueueAddItem(Fruit fruit)
     {
         animCounter += 1;
-        Texture2D texture = fruit.texture;
-        string type = fruit.type;
         while (itemsSequence.active)
         {
             yield return null;
         }
         itemsSequence = DOTween.Sequence();
-        AddItem(texture, type).AppendCallback(() => animCounter -= 1);
+        AddItem(fruit).AppendCallback(() => animCounter -= 1);
     }
 
-    public Sequence AddItem(Texture2D texture, string fruitType)
+    public Sequence AddItem(Fruit fruit)
     {
-        trayItems[currentItemIndexForAnimation].SetFruit(texture, fruitType);
+        trayItems[currentItemIndexForAnimation].SetFruit(fruit.texture, fruit.type);
+        fruit.transform.SetZ(GameManager.Instance.FrontCanvas.transform.position.z - 3f);
 
         int newItemPos = currentItemIndexForAnimation;
         for (var i = currentItemIndexForAnimation - 1; i >= 0; i--)
@@ -148,9 +147,16 @@ public class Tray : MonoBehaviour
             {
                 itemsSequence.Join(items[i].transform.DOLocalMoveXAtSpeed(xPositions[i], moveItemSpeed));
             }
+//            itemsSequence.AppendInterval(0);
+        }
+        else
+        {
             itemsSequence.AppendInterval(delay);
         }
+        itemsSequence.Append(fruit.transform.DOMove(trayItems[newItemPos].transform.position + new Vector3(0, 0, -3), 0.3f));
+        itemsSequence.Join(fruit.transform.DOScale(0.2f, 0.3f));
         itemsSequence.AppendCallback(() => {
+            fruit.Remove();
             items[newItemPos].transform.SetLocalX(xPositions[newItemPos]);
             items[newItemPos].gameObject.SetActive(true);
         });

@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class PlayResult : MonoBehaviour
 {
-    public Image m_Background;
+    public CanvasGroup m_Background;
     public Button m_ContinueButton;
     public RectTransform m_Star1;
     public RectTransform m_Star2;
@@ -22,7 +22,11 @@ public class PlayResult : MonoBehaviour
         m_Star2.gameObject.SetActive(false);
         m_Star3.gameObject.SetActive(false);
 
+        m_Background.alpha = 0f;
+        gameObject.SetActive(true);
+
         Sequence s = DOTween.Sequence(this);
+        s.Append(m_Background.DOFade(1, 0.15f));
         s.AppendInterval(0.5f);
         s.AppendCallback(() => m_Star1.gameObject.SetActive(true));
         if (numStars > 1)
@@ -36,7 +40,7 @@ public class PlayResult : MonoBehaviour
             s.AppendCallback(() => m_Star3.gameObject.SetActive(true));
         }
 
-        gameObject.SetActive(true);
+
     }
 
     public void OnContinue()

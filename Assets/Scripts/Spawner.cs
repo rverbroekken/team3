@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
     private int numLayers = 100;
     private float minX = -8f;
     private float maxX = 8f;
-    private int index = 0;
+    private int zIndex = 0;
 
     private void Awake()
     {
@@ -54,6 +54,7 @@ public class Spawner : MonoBehaviour
             if (fruitData)
             {
                 fruitData.fruit.itemData = fruitData;
+                fruitData.fruit.isGoalItem = fruitData.isGoalItem;
                 fruitPrefabs.Add(fruitData.fruit);
 
                 for (var i = 0; i < fruitData.amount * 3; i++)
@@ -103,6 +104,7 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        var canvasZ = GameManager.Instance.FrontCanvas.transform.position.z + 3f;
         while (enabled)
         {
             if (dummyItems.Count == 0 && missionItems.Count == 0)
@@ -115,18 +117,13 @@ public class Spawner : MonoBehaviour
             {
                 x = Random.Range(minX, maxX),
                 y = spawnArea.bounds.max.y,
-                z = (index) * -3f
+                z = (zIndex * -3) - canvasZ
             };
-            index = (index + 1) % numLayers;
-
-            float minX1 = -8f;
-            float maxX1 = 2f;
-            float minX2 = -2f;
-            float maxX2 = 8f;
+            zIndex = (zIndex + 1) % numLayers;
 
             var f = Math.InverseLerpUnclamped(spawnArea.bounds.min.x, spawnArea.bounds.max.x, position.x);
-            var minAngle = Mathf.LerpUnclamped(minX1, maxX1, f);
-            var maxAngle = Mathf.LerpUnclamped(minX2, maxX2, f);
+            var minAngle = Mathf.LerpUnclamped(-8f, 2f, f);
+            var maxAngle = Mathf.LerpUnclamped(-1f, 8f, f);
 
             Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
 
@@ -150,17 +147,7 @@ public class Spawner : MonoBehaviour
                 item.Disable(true);
                 items.Add(item); };
             item.Enable();
-/*            
-            var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Count)];
-            if (Random.value < bombChance && bombPrefabs.Count > 0)
-            {
-                prefab = bombPrefabs[Random.Range(0, bombPrefabs.Count)];
-            }
-            var item = Instantiate(prefab, position, rotation);
-            item.Enable();
-            item.OnSelect += GameManager.Instance.OnFruitSelect;
-            Destroy(item.gameObject, maxLifetime);
-*/
+
             float force = Random.Range(item.itemData.minForce, item.itemData.maxForce);
             var body = item.GetComponent<Rigidbody>();
             body.ResetInertiaTensor();
