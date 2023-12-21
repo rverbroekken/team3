@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4308050956024536992
 Transform:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2197915182229602677}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -5055,15 +5055,9 @@ MonoBehaviour:
   type: Fruit_Base
   m_SpawnSound: {fileID: 0}
   m_TapSound: {fileID: 0}
-  minXRotation: -1
-  minYRotation: -1
-  minZRotation: -1
-  maxXRotation: 1
-  maxYRotation: 1
-  maxZRotation: 1
-  minForce: 16
-  maxForce: 21
+  itemData: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
+  YValueForEvent: 0
   texture: {fileID: 0}
 --- !u!54 &3266447441071319141
 Rigidbody:

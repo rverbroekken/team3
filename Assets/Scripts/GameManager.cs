@@ -141,11 +141,12 @@ public class GameManager : MonoBehaviour
             if (fruitData)
             {
                 RenderTexture t = new RenderTexture(renderTextureDescriptor);
-                var item = Instantiate(fruitData.fruit, new Vector3(40f, -40f, 0f), Quaternion.identity);
+                var item = Instantiate(fruitData.fruit, new Vector3(40f, -20f, 0f), Quaternion.identity);
+                item.Enable();
                 var rigidbody = item.GetComponent<Rigidbody>();
-                rigidbody.useGravity = false;
-                rigidbody.mass = 0;
+                rigidbody.Sleep();
                 item.itemCamera.gameObject.SetActive(true);
+                item.itemCamera.enabled = true;
                 item.itemCamera.targetTexture = t;
                 item.itemCamera.Render();
                 (fruitData.fruit as Fruit).texture = t.toTexture2D();

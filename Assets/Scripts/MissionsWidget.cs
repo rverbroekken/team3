@@ -26,8 +26,8 @@ public class MissionsWidget : MonoBehaviour
                 AddMission(fruitData.fruit.type, goal * 3, fruitData.fruit.texture);
             }
         }
-
     }
+
     private void AddMission(string type, int amount, Texture2D texture)
     {
         var item = Instantiate(prefab, transform);

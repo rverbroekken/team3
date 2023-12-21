@@ -8,8 +8,10 @@ public class Fruit : Item
     {
         juiceEffect.Play();
         fruitCollider.enabled = false;
+        fruitRigidbody.Sleep();
         whole.SetActive(false);
         OnSelect?.Invoke(this);
+        Destroy(gameObject, 2f);
     }
 
 }

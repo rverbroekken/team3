@@ -47,6 +47,7 @@ public class Item : MonoBehaviour
         outline.enabled = false;
         if (itemCamera)
         {
+            itemCamera.enabled = false;
             itemCamera.gameObject.SetActive(false);
         }
         if (type == "")
@@ -69,7 +70,7 @@ public class Item : MonoBehaviour
     {
         if (fruitCollider.enabled)
         {
-            if (transform.position.y < YValueForEvent)
+            if (transform.position.y < YValueForEvent * 2)
             {
                 OnOutOfScreen?.Invoke();
             }

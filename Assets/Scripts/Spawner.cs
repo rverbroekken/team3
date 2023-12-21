@@ -51,13 +51,15 @@ public class Spawner : MonoBehaviour
             if (fruitData)
             {
                 fruitData.fruit.itemData = fruitData;
-                //                fruitPrefabs.Add(fruitData.fruit);
+                fruitPrefabs.Add(fruitData.fruit);
+
                 for (var i = 0; i < fruitData.amount * 3; i++)
                 {
                     var item = Instantiate(fruitData.fruit, Vector3.one, Quaternion.identity);
                     item.OnSelect += GameManager.Instance.OnFruitSelect;
                     fruitItems.Add(item);
                 }
+
             }
         }
         foreach (var bombData in levelData.bombs)
@@ -66,12 +68,14 @@ public class Spawner : MonoBehaviour
             {
                 bombData.bomb.itemData = bombData;
                 bombPrefabs.Add(bombData.bomb);
+
                 for (var i = 0; i < bombData.amount; i++)
                 {
                     var item = Instantiate(bombData.bomb, Vector3.one, Quaternion.identity);
                     item.OnSelect += GameManager.Instance.OnFruitSelect;
                     fruitItems.Add(item);
                 }
+
             }
         }
         enabled = true;
@@ -92,18 +96,14 @@ public class Spawner : MonoBehaviour
 //        float factor = (7f / 5f);
         while (enabled)
         {
+
             if (fruitItems.Count == 0)
             {
                 yield return null;
                 continue;
             }
-/*
-            var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Count)];
-            if (Random.value < bombChance && bombPrefabs.Count > 0) 
-            {
-                prefab = bombPrefabs[Random.Range(0, bombPrefabs.Count)];
-            }
-*/
+
+
             Vector3 position = new Vector3
             {
                 x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
@@ -127,8 +127,14 @@ public class Spawner : MonoBehaviour
 
             Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
 
+            
             var itemIdx = Random.Range(0, fruitItems.Count);
             var item = fruitItems[itemIdx];
+            if (!item)
+            {
+                yield return null;
+                continue;
+            }
             fruitItems.RemoveAt(itemIdx);
             item.transform.position = position;
             item.transform.rotation = rotation;
@@ -137,11 +143,17 @@ public class Spawner : MonoBehaviour
                 item.Disable(true); 
                 fruitItems.Add(item); };
             item.Enable();
-
-            //var item = Instantiate(prefab, position, rotation);
-            //item.OnSelect += GameManager.Instance.OnFruitSelect;
-            //Destroy(item.gameObject, maxLifetime);
-
+/*            
+            var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Count)];
+            if (Random.value < bombChance && bombPrefabs.Count > 0)
+            {
+                prefab = bombPrefabs[Random.Range(0, bombPrefabs.Count)];
+            }
+            var item = Instantiate(prefab, position, rotation);
+            item.Enable();
+            item.OnSelect += GameManager.Instance.OnFruitSelect;
+            Destroy(item.gameObject, maxLifetime);
+*/
             float force = Random.Range(item.itemData.minForce, item.itemData.maxForce);
             var body = item.GetComponent<Rigidbody>();
             body.ResetInertiaTensor();
@@ -154,11 +166,6 @@ public class Spawner : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
         }
-    }
-
-    void FruitItemOutOfReach()
-    {
-
     }
 
     public Texture2D GetTextureByType(string type)

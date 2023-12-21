@@ -855,7 +855,7 @@ MonoBehaviour:
   playResultDialog: {fileID: 1565360047}
   fadeImage: {fileID: 1744158372}
   levels:
-  - {fileID: 11400000, guid: 339ed594402815243a871c850e10b095, type: 2}
+  - {fileID: 11400000, guid: d20c3968e112c6e4ba178a3b0f765900, type: 2}
   levelIdx: 0
 --- !u!82 &1442567887
 AudioSource:
@@ -1238,6 +1238,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 675265356}
     m_Modifications:
+    - target: {fileID: 133915425889163254, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 288370507139993602, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487782710892730674, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265645984243450415, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675436069311258026, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3383775161931335351, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 3485618775049081710, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856448948586501274, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 540
+      objectReference: {fileID: 0}
     - target: {fileID: 4007967215654134924, guid: 9362695415681454ca6a0a11e894d424, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1321,6 +1353,30 @@ PrefabInstance:
     - target: {fileID: 4989154945857787485, guid: 9362695415681454ca6a0a11e894d424, type: 3}
       propertyPath: m_Name
       value: Tray
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073926934714786843, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208195146413413915, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450555548026810887, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335880890828988547, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467905000403669635, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7494093718408541855, guid: 9362695415681454ca6a0a11e894d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 540
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
