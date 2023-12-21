@@ -27,6 +27,7 @@ public class Item : MonoBehaviour
 
     [HideInInspector] public ItemData itemData;
     [HideInInspector] public Vector3 originalScale;
+    [HideInInspector] public float clickTime = 0f;
 
     protected Rigidbody fruitRigidbody;
     protected Collider fruitCollider;
@@ -41,7 +42,7 @@ public class Item : MonoBehaviour
     {
         fruitRigidbody = GetComponent<Rigidbody>();
         fruitCollider = GetComponentInChildren<Collider>();
-        outline = GetComponent<Outline>();
+        outline = GetComponentInChildren<Outline>();
         juiceEffect = GetComponentInChildren<ParticleSystem>();
         originalScale = transform.localScale;
         outline.enabled = false;

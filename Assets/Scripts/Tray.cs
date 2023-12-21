@@ -18,7 +18,7 @@ public class Tray : MonoBehaviour
     static private float[] xPositions = { -450f, -300f, -150f, 0f, 150f, 300f, 450f };
     const float moveMatchSpeed = .09f;
     const float moveItemSpeed = .09f;
-    const float delay = .15f;
+    const float delay = .25f;
 
     Sequence itemsSequence;
 
@@ -99,7 +99,9 @@ public class Tray : MonoBehaviour
 
     private IEnumerator CoQueueAddItem(Fruit fruit)
     {
+        fruit.EnableOutline(true);
         animCounter += 1;
+        fruit.clickTime = Time.time;
         while (itemsSequence.active)
         {
             yield return null;
@@ -147,17 +149,21 @@ public class Tray : MonoBehaviour
             {
                 itemsSequence.Join(items[i].transform.DOLocalMoveXAtSpeed(xPositions[i], moveItemSpeed));
             }
-//            itemsSequence.AppendInterval(0);
         }
         else
         {
-            itemsSequence.AppendInterval(delay);
+            var waitDuration = Time.time - fruit.clickTime;
+            if (waitDuration < delay)
+            {
+                itemsSequence.AppendInterval(delay- waitDuration);
+            }
         }
-        itemsSequence.Append(fruit.transform.DOMove(trayItems[newItemPos].transform.position + new Vector3(0, 0, -3), 0.3f));
+
+        items[newItemPos].transform.SetLocalX(xPositions[newItemPos]);
+        itemsSequence.Append(fruit.transform.DOMove(items[newItemPos].transform.position + new Vector3(0, 0, -3), 0.3f));
         itemsSequence.Join(fruit.transform.DOScale(0.2f, 0.3f));
         itemsSequence.AppendCallback(() => {
             fruit.Remove();
-            items[newItemPos].transform.SetLocalX(xPositions[newItemPos]);
             items[newItemPos].gameObject.SetActive(true);
         });
 
@@ -173,11 +179,10 @@ public class Tray : MonoBehaviour
 
     private void HandleMatchSequence(List<TrayItem> items, Sequence itemsSequence, int index, int oldCurrentItem)
     {
-        itemsSequence.AppendInterval(delay);
+        //itemsSequence.AppendInterval(delay);
         //move match items to one position  (center)
-        itemsSequence.Append(items[index-2].transform.DOLocalMoveXAtSpeed(xPositions[index-1], moveMatchSpeed));
-        var move = itemsSequence.Join(items[index].transform.DOLocalMoveXAtSpeed(xPositions[index-1], moveMatchSpeed));
-        itemsSequence.AppendInterval(delay);
+        itemsSequence.Append(items[index-1].transform.DOLocalMoveXAtSpeed(xPositions[index-2], moveMatchSpeed));
+        itemsSequence.Join(items[index].transform.DOLocalMoveXAtSpeed(xPositions[index-2], moveMatchSpeed));
         itemsSequence.AppendCallback(() => {
             items[index].gameObject.SetActive(false);
             items[index-1].gameObject.SetActive(false);
@@ -185,7 +190,7 @@ public class Tray : MonoBehaviour
         });
         for (int i = index + 1; i <= oldCurrentItem; i++)
         {
-            move.Join(items[i].transform.DOLocalMoveXAtSpeed(xPositions[i-3], moveItemSpeed));
+            itemsSequence.Join(items[i].transform.DOLocalMoveXAtSpeed(xPositions[i-3], moveItemSpeed));
         }
         itemsSequence.AppendCallback(() =>
         {
