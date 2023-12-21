@@ -177,6 +177,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: -1127694574055567158, guid: 5805ed91828cade49854f9c6a2a99c13, type: 2}
+    - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: minScale
       value: 0.8
       objectReference: {fileID: 0}
@@ -187,7 +191,7 @@ PrefabInstance:
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_SpawnSound
       value: 
-      objectReference: {fileID: 8300000, guid: 9557bc75c49c49147bb016dd5b86d4d6, type: 3}
+      objectReference: {fileID: 8300000, guid: 6f3938434db380245b452b21e6d96424, type: 3}
     - target: {fileID: 8457310349337905134, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_RootOrder
       value: 0

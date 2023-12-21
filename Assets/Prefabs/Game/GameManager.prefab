@@ -55,6 +55,7 @@ MonoBehaviour:
   missionsWidget: {fileID: 0}
   playResultDialog: {fileID: 0}
   pauseDialog: {fileID: 0}
+  lobby: {fileID: 0}
   fadeImage: {fileID: 0}
   levels:
   - {fileID: 11400000, guid: ece3b315fd07dd245b3a946658aa4e45, type: 2}
@@ -69,7 +70,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a104b6621a1b81b4a8e9f9f1e73b1228, type: 2}
   - {fileID: 11400000, guid: 4117005f4102e214a88a3bd024ca1892, type: 2}
   - {fileID: 11400000, guid: 3117aff051de0194fb8dda7d67a1c667, type: 2}
-  levelIdx: 11
+  levelIdx: 0
 --- !u!82 &5541419962027151506
 AudioSource:
   m_ObjectHideFlags: 0

@@ -183,11 +183,11 @@ PrefabInstance:
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_TapSound
       value: 
-      objectReference: {fileID: 8300000, guid: aaded6f76ca3fe94dbec7d644fe988af, type: 3}
+      objectReference: {fileID: 8300000, guid: 673fc985a2e1452489f6aeb9a662e2a6, type: 3}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_SpawnSound
       value: 
-      objectReference: {fileID: 8300000, guid: 9557bc75c49c49147bb016dd5b86d4d6, type: 3}
+      objectReference: {fileID: 8300000, guid: cb3e3e7d5756c024a9b1072912141b66, type: 3}
     - target: {fileID: 8457310349337905134, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_RootOrder
       value: 0
