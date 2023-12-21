@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43632814, g: 0.47471273, b: 0.5147158, a: 1}
+  m_IndirectSpecularColor: {r: 0.43369657, g: 0.47157705, b: 0.51242584, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -192,6 +192,7 @@ MonoBehaviour:
   fruitPrefabs:
   - {fileID: 1345022896480124040, guid: 3dadd027689a1c14991f4bb5957995ac, type: 3}
   bombPrefabs: []
+  fruitItems: []
   bombChance: 0.068
   startY: -12
   minSpawnDelay: 0.1
@@ -561,7 +562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &931717900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,7 +855,7 @@ MonoBehaviour:
   playResultDialog: {fileID: 1565360047}
   fadeImage: {fileID: 1744158372}
   levels:
-  - {fileID: 11400000, guid: d20c3968e112c6e4ba178a3b0f765900, type: 2}
+  - {fileID: 11400000, guid: 339ed594402815243a871c850e10b095, type: 2}
   levelIdx: 0
 --- !u!82 &1442567887
 AudioSource:
