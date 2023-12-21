@@ -66,7 +66,14 @@ public class PlayerData
             string fromjson = File.ReadAllText(path);
             if (fromjson != "")
             {
-                return JsonUtility.FromJson<PlayerData>(fromjson);
+                try 
+                {
+                    var player = JsonUtility.FromJson<PlayerData>(fromjson);
+                    return player;
+                }
+                catch (Exception)
+                {
+                }
             }
         }
         return  new PlayerData();
