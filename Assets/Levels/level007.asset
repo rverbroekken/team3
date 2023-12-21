@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8150964423248472774
+--- !u!114 &-7763440709780053500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17,14 +17,62 @@ MonoBehaviour:
   minZRotation: -1
   maxXRotation: 1
   maxYRotation: 1
-  maxZRotation: 4
+  maxZRotation: 1
+  minForce: 16
+  maxForce: 21
+  amount: 3
+  goalAmount: 3
+  isGoalItem: 1
+  fruit: {fileID: 1345022896480124040, guid: aef05b74b777de14b8eb43663905479d, type: 3}
+--- !u!114 &-5669002757359611453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 16
+  maxForce: 21
+  amount: 3
+  goalAmount: 0
+  isGoalItem: 0
+  fruit: {fileID: 1345022896480124040, guid: 90f46da49b9cbb940bdc3a98f12e3d14, type: 3}
+--- !u!114 &-4120632452104188049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
   minForce: 16
   maxForce: 21
   amount: 6
   goalAmount: 0
   isGoalItem: 0
-  fruit: {fileID: 1345022896480124040, guid: 1a7b7a122dd54e849ab5d5ceb8752705, type: 3}
---- !u!114 &-7070643899057305189
+  fruit: {fileID: 1345022896480124040, guid: de6978859c57e0a439ff5c8edc8fbf40, type: 3}
+--- !u!114 &-2948480870603568972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,11 +92,11 @@ MonoBehaviour:
   maxZRotation: 1
   minForce: 16
   maxForce: 21
-  amount: 2
-  goalAmount: 2
+  amount: 3
+  goalAmount: 3
   isGoalItem: 1
-  fruit: {fileID: 1345022896480124040, guid: fafbcd62be3e89f4d8ff38f398ecc80d, type: 3}
---- !u!114 &-6432042265643518160
+  fruit: {fileID: 1345022896480124040, guid: 5d256cdc9d6d0994686879dded1c8684, type: 3}
+--- !u!114 &-1553111106669955495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,34 +116,58 @@ MonoBehaviour:
   maxZRotation: 1
   minForce: 16
   maxForce: 21
-  amount: 2
-  goalAmount: 2
-  isGoalItem: 1
-  fruit: {fileID: 1345022896480124040, guid: 2d38e206841a86c48986b40db2955bfe, type: 3}
---- !u!114 &-1433967013966718733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minXRotation: -1
-  minYRotation: -1
-  minZRotation: -1
-  maxXRotation: 1
-  maxYRotation: 1
-  maxZRotation: 1
-  minForce: 16
-  maxForce: 21
-  amount: 5
+  amount: 3
   goalAmount: 0
   isGoalItem: 0
-  fruit: {fileID: 1345022896480124040, guid: 3d7ecde325fe9e14e98c16689b4a464a, type: 3}
+  fruit: {fileID: 1345022896480124040, guid: 2aa616f5202136c4c95e6211a320b723, type: 3}
+--- !u!114 &-1127694574055567158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 16
+  maxForce: 21
+  amount: 6
+  goalAmount: 0
+  isGoalItem: 0
+  fruit: {fileID: 1345022896480124040, guid: 39185cfc39988b94983a958290085c96, type: 3}
+--- !u!114 &-510404466821606536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 16
+  maxForce: 21
+  amount: 3
+  goalAmount: 3
+  isGoalItem: 1
+  fruit: {fileID: 1345022896480124040, guid: 5b72245a3dec3614d907700f2e4268a5, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,24 +178,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2fb889a1bf68e4fa4701e059697b78, type: 3}
-  m_Name: level006
+  m_Name: level007
   m_EditorClassIdentifier: 
-  description: Soup Surplus
+  description: Relaxing Ratatouille
   levelTimeInSeconds: 150
   minSpawnDelay: 0.25
-  maxSpawnDelay: 1
+  maxSpawnDelay: 0.9
   minSpawnX: -5
   maxSpawnX: 5
   bombs:
   - {fileID: 0}
   fruit:
-  - {fileID: -1433967013966718733}
-  - {fileID: 1067691759099562001}
-  - {fileID: -6432042265643518160}
-  - {fileID: 1283039626373097995}
-  - {fileID: 5926137336958616413}
-  - {fileID: -7070643899057305189}
-  - {fileID: -8150964423248472774}
+  - {fileID: -7763440709780053500}
+  - {fileID: -510404466821606536}
+  - {fileID: -2948480870603568972}
+  - {fileID: 4106292986260931700}
+  - {fileID: 1738232792390685918}
+  - {fileID: -1127694574055567158}
+  - {fileID: -5669002757359611453}
+  - {fileID: -1553111106669955495}
+  - {fileID: -4120632452104188049}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -135,9 +209,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!114 &1067691759099562001
+--- !u!114 &1738232792390685918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,11 +229,11 @@ MonoBehaviour:
   maxZRotation: 1
   minForce: 16
   maxForce: 21
-  amount: 6
+  amount: 3
   goalAmount: 0
   isGoalItem: 0
-  fruit: {fileID: 1345022896480124040, guid: 24329a6722f0b8440874a6b482881d4e, type: 3}
---- !u!114 &1283039626373097995
+  fruit: {fileID: 1345022896480124040, guid: f08f8539781aecd429a3452f1608f5dc, type: 3}
+--- !u!114 &4106292986260931700
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,31 +253,7 @@ MonoBehaviour:
   maxZRotation: 1
   minForce: 16
   maxForce: 21
-  amount: 2
-  goalAmount: 2
+  amount: 3
+  goalAmount: 3
   isGoalItem: 1
-  fruit: {fileID: 1345022896480124040, guid: f4e26733f5988b14f8fc477b9ae02478, type: 3}
---- !u!114 &5926137336958616413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minXRotation: -1
-  minYRotation: -1
-  minZRotation: -1
-  maxXRotation: 1
-  maxYRotation: 1
-  maxZRotation: 1
-  minForce: 16
-  maxForce: 21
-  amount: 2
-  goalAmount: 2
-  isGoalItem: 1
-  fruit: {fileID: 1345022896480124040, guid: d2af787a390678844979c42ba01d8e1c, type: 3}
+  fruit: {fileID: 1345022896480124040, guid: bdb3b95e89fff8449b010cabcc7729e8, type: 3}

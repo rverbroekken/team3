@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: level004
   m_EditorClassIdentifier: 
   description: An Eventful Evening
-  levelTimeInSeconds: 180
+  levelTimeInSeconds: 150
   minSpawnDelay: 0.3
   maxSpawnDelay: 1.2
   minSpawnX: -7

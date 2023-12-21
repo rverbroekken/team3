@@ -37,7 +37,7 @@ MonoBehaviour:
   m_Name: level001
   m_EditorClassIdentifier: 
   description: Lazy Sunday Morning
-  levelTimeInSeconds: 180
+  levelTimeInSeconds: 150
   minSpawnDelay: 0.1
   maxSpawnDelay: 0.75
   minSpawnX: -5

@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: level002
   m_EditorClassIdentifier: 
   description: Chunky Fruit Salad
-  levelTimeInSeconds: 180
+  levelTimeInSeconds: 150
   minSpawnDelay: 0.1
   maxSpawnDelay: 0.5
   minSpawnX: -5
