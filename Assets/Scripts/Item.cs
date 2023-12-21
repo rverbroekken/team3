@@ -34,6 +34,8 @@ public class Item : MonoBehaviour
     protected Outline outline;
 
     public Action<Fruit> OnSelect;
+    public Action OnOutOfScreen;
+    [HideInInspector] public float YValueForEvent;
 
     void Awake()
     {
@@ -52,6 +54,7 @@ public class Item : MonoBehaviour
             type = name;
         }
 
+        Disable(true);
         OnAwake();
     }
 
@@ -62,10 +65,34 @@ public class Item : MonoBehaviour
         OnItemSelect();
     }
 
-    public void Disable()
+    private void Update()
+    {
+        if (fruitCollider.enabled)
+        {
+            if (transform.position.y < YValueForEvent)
+            {
+                OnOutOfScreen?.Invoke();
+            }
+        }
+    }
+
+    public void Disable(bool deactivate = false)
     {
         fruitRigidbody.Sleep();
+
         fruitCollider.enabled = false;
+        if (deactivate)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+    public void Enable()
+    {
+        fruitRigidbody.WakeUp();
+        fruitCollider.enabled = true;
+        gameObject.SetActive(true);
+        fruitRigidbody.velocity = Vector3.zero;
+        fruitRigidbody.angularVelocity = Vector3.zero;
     }
 
     public void EnableOutline(bool enable)

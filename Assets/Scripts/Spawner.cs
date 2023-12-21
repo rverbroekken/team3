@@ -10,6 +10,10 @@ public class Spawner : MonoBehaviour
     public List<Item> fruitPrefabs = new List<Item>();
     public List<Item> bombPrefabs = new List<Item>();
 
+
+    public List<Item> fruitItems = new List<Item>();
+
+
     [Range(0f, 1f)] public float bombChance = 0.05f;
 
     public float startY = -12f;
@@ -47,7 +51,13 @@ public class Spawner : MonoBehaviour
             if (fruitData)
             {
                 fruitData.fruit.itemData = fruitData;
-                fruitPrefabs.Add(fruitData.fruit);
+                //                fruitPrefabs.Add(fruitData.fruit);
+                for (var i = 0; i < fruitData.amount * 3; i++)
+                {
+                    var item = Instantiate(fruitData.fruit, Vector3.one, Quaternion.identity);
+                    item.OnSelect += GameManager.Instance.OnFruitSelect;
+                    fruitItems.Add(item);
+                }
             }
         }
         foreach (var bombData in levelData.bombs)
@@ -56,6 +66,12 @@ public class Spawner : MonoBehaviour
             {
                 bombData.bomb.itemData = bombData;
                 bombPrefabs.Add(bombData.bomb);
+                for (var i = 0; i < bombData.amount; i++)
+                {
+                    var item = Instantiate(bombData.bomb, Vector3.one, Quaternion.identity);
+                    item.OnSelect += GameManager.Instance.OnFruitSelect;
+                    fruitItems.Add(item);
+                }
             }
         }
         enabled = true;
@@ -63,6 +79,7 @@ public class Spawner : MonoBehaviour
 
     public void Clear()
     {
+        fruitItems.Clear();
         fruitPrefabs.Clear();
         bombPrefabs.Clear();
         enabled = false;
@@ -75,19 +92,24 @@ public class Spawner : MonoBehaviour
 //        float factor = (7f / 5f);
         while (enabled)
         {
+            if (fruitItems.Count == 0)
+            {
+                yield return null;
+                continue;
+            }
+/*
             var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Count)];
             if (Random.value < bombChance && bombPrefabs.Count > 0) 
             {
                 prefab = bombPrefabs[Random.Range(0, bombPrefabs.Count)];
             }
-
+*/
             Vector3 position = new Vector3
             {
                 x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
-                y = Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y),
+                y = spawnArea.bounds.max.y,
                 z = (index) * -3f
             };
-
             index = (index + 1) % numLayers;
 
 /*            
@@ -105,13 +127,24 @@ public class Spawner : MonoBehaviour
 
             Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
 
-            var item = Instantiate(prefab, position, rotation);
-            item.OnSelect += GameManager.Instance.OnFruitSelect;
+            var itemIdx = Random.Range(0, fruitItems.Count);
+            var item = fruitItems[itemIdx];
+            fruitItems.RemoveAt(itemIdx);
+            item.transform.position = position;
+            item.transform.rotation = rotation;
+            item.YValueForEvent = spawnArea.bounds.min.y;
+            item.OnOutOfScreen += () => { 
+                item.Disable(true); 
+                fruitItems.Add(item); };
+            item.Enable();
 
-            Destroy(item.gameObject, maxLifetime);
+            //var item = Instantiate(prefab, position, rotation);
+            //item.OnSelect += GameManager.Instance.OnFruitSelect;
+            //Destroy(item.gameObject, maxLifetime);
 
             float force = Random.Range(item.itemData.minForce, item.itemData.maxForce);
             var body = item.GetComponent<Rigidbody>();
+            body.ResetInertiaTensor();
             body.AddForce(item.transform.up * force, ForceMode.Impulse);
 
             var xr = Random.Range(item.itemData.minXRotation * 1000, item.itemData.maxXRotation * 1000) / 1000f;
@@ -121,6 +154,11 @@ public class Spawner : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
         }
+    }
+
+    void FruitItemOutOfReach()
+    {
+
     }
 
     public Texture2D GetTextureByType(string type)
