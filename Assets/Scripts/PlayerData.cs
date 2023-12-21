@@ -27,7 +27,7 @@ public class PlayerData
         levelState.levelIdx = levelIdx;
         levelState.numStars = numStars;
         levelStates.Add(levelState);
-        currentLevelIdx = levelIdx;
+        currentLevelIdx = levelIdx+1;
 
         piggybankLevelState += numDummyMatches;
         piggybankLevelIdx += (piggybankLevelState / dummyScoreForNextLevel);
@@ -39,35 +39,40 @@ public class PlayerData
     public LevelState GetLastLevelState()
     {
         return levelStates[levelStates.Count-1];
-    }
-    
+    }    
 
     public LevelState GetLevelState(int levelIdx)
     {
         return levelStates.Find(l => l.levelIdx == levelIdx);
     }
 
+    private static string DataPath()
+    {
+        string path = "Game.player";
+
+        //#if !UNITY_EDITOR
+        path = Path.Combine(Application.persistentDataPath, path);
+//#else
+//        path = Path.Combine(Application.dataPath, path);
+//#endif
+        return path;
+    }
+
     public static PlayerData Load()
     {
-        string path = Application.persistentDataPath + "/Game.player"; 
+        string path = DataPath(); 
         if (File.Exists(path))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-            PlayerData data = formatter.Deserialize(stream) as PlayerData;
-            stream.Close(); 
-            return data;
+            string fromjson = File.ReadAllText(path);
+            return JsonUtility.FromJson<PlayerData>(fromjson);
         }
         return  new PlayerData();
     }
 
     private void Save()
     {
-        BinaryFormatter formatter = new BinaryFormatter(); 
-        string path = Application.persistentDataPath + "/Game.player";
-        FileStream stream = new FileStream(path, FileMode.Create);
-        formatter.Serialize(stream, this);
-        stream.Close();
+        string toJson = JsonUtility.ToJson(this, true);
+        File.WriteAllText(DataPath(), toJson);
     }
 }
 

@@ -214,8 +214,8 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.3f);
 
-        int numStars = ((int)levelDuration / (activeLevelData.levelTimeInSeconds / 3)) + 1;
         playResultDialog.Show(playerData, activeLevelData.description);
+
         activeLevelData = null;
     }
 
