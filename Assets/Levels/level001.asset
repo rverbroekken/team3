@@ -136,4 +136,4 @@ MonoBehaviour:
   amount: 5
   goalAmount: 0
   isGoalItem: 0
-  fruit: {fileID: 1345022896480124040, guid: 78d96356fa8291b4ba094b16cf7ff9ee, type: 3}
+  fruit: {fileID: 1345022896480124040, guid: 39185cfc39988b94983a958290085c96, type: 3}

@@ -139,7 +139,7 @@ public class Spawner : MonoBehaviour
             item.transform.position = position;
             item.transform.rotation = rotation;
             item.YValueForEvent = spawnArea.bounds.min.y;
-            item.OnOutOfScreen += () => { 
+            item.OnOutOfScreen = () => {             
                 item.Disable(true); 
                 fruitItems.Add(item); };
             item.Enable();
