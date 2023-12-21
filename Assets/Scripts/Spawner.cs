@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using sgg;
 
 [RequireComponent(typeof(Collider))]
 public class Spawner : MonoBehaviour
@@ -10,8 +11,8 @@ public class Spawner : MonoBehaviour
     public List<Item> fruitPrefabs = new List<Item>();
     public List<Item> bombPrefabs = new List<Item>();
 
-
-    public List<Item> fruitItems = new List<Item>();
+    public List<Item> dummyItems = new List<Item>();
+    public List<Item> missionItems = new List<Item>();
 
 
     [Range(0f, 1f)] public float bombChance = 0.05f;
@@ -21,10 +22,10 @@ public class Spawner : MonoBehaviour
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
 
-    private float maxLifetime = 5f;
+//    private float maxLifetime = 5f;
     private int numLayers = 100;
-    private float minX = -5f;
-    private float maxX = 5f;
+    private float minX = -8f;
+    private float maxX = 8f;
     private int index = 0;
 
     private void Awake()
@@ -46,6 +47,8 @@ public class Spawner : MonoBehaviour
     {
         minSpawnDelay = levelData.minSpawnDelay;
         maxSpawnDelay = levelData.maxSpawnDelay;
+        minX = levelData.minSpawnX;
+        maxX = levelData.maxSpawnX;
         foreach (var fruitData in levelData.fruit)
         {
             if (fruitData)
@@ -57,9 +60,15 @@ public class Spawner : MonoBehaviour
                 {
                     var item = Instantiate(fruitData.fruit, Vector3.one, Quaternion.identity);
                     item.OnSelect += GameManager.Instance.OnFruitSelect;
-                    fruitItems.Add(item);
+                    if (fruitData.isGoalItem)
+                    {
+                        missionItems.Add(item);
+                    }
+                    else
+                    {
+                        dummyItems.Add(item);
+                    }
                 }
-
             }
         }
         foreach (var bombData in levelData.bombs)
@@ -73,7 +82,7 @@ public class Spawner : MonoBehaviour
                 {
                     var item = Instantiate(bombData.bomb, Vector3.one, Quaternion.identity);
                     item.OnSelect += GameManager.Instance.OnFruitSelect;
-                    fruitItems.Add(item);
+                    dummyItems.Add(item);
                 }
 
             }
@@ -83,9 +92,10 @@ public class Spawner : MonoBehaviour
 
     public void Clear()
     {
-        fruitItems.Clear();
+        dummyItems.Clear();
         fruitPrefabs.Clear();
         bombPrefabs.Clear();
+        missionItems.Clear();
         enabled = false;
     }
 
@@ -93,55 +103,52 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-//        float factor = (7f / 5f);
         while (enabled)
         {
-
-            if (fruitItems.Count == 0)
+            if (dummyItems.Count == 0 && missionItems.Count == 0)
             {
                 yield return null;
                 continue;
             }
 
-
             Vector3 position = new Vector3
             {
-                x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
+                x = Random.Range(minX, maxX),
                 y = spawnArea.bounds.max.y,
                 z = (index) * -3f
             };
             index = (index + 1) % numLayers;
 
-/*            
-            float minX1 = factor * minX;
-            float minX2 = factor * (-minX - 5);
-            float maxX1 = factor * (5 - maxX);
-            float maxX2 = factor * maxX;
-            var minAngle = Mathf.Lerp(minX1, maxX1, f);
-            var maxAngle = Mathf.Lerp(minX2, maxX2, f);
-*/
+            float minX1 = -8f;
+            float maxX1 = 2f;
+            float minX2 = -2f;
+            float maxX2 = 8f;
 
-            var f = Mathf.InverseLerp(minX, maxX, position.x);
-            var minAngle = Mathf.Lerp(-7, 0, f);
-            var maxAngle = Mathf.Lerp(0, 7, f);
+            var f = Math.InverseLerpUnclamped(spawnArea.bounds.min.x, spawnArea.bounds.max.x, position.x);
+            var minAngle = Mathf.LerpUnclamped(minX1, maxX1, f);
+            var maxAngle = Mathf.LerpUnclamped(minX2, maxX2, f);
 
             Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
 
-            
-            var itemIdx = Random.Range(0, fruitItems.Count);
-            var item = fruitItems[itemIdx];
+            var items = dummyItems;
+            if (dummyItems.Count == 0 || (Random.Range(0, 2) == 0 && missionItems.Count > 0))
+            {
+                items = missionItems;
+            }
+            var itemIdx = Random.Range(0, items.Count);
+            var item = items[itemIdx];
             if (!item)
             {
                 yield return null;
                 continue;
             }
-            fruitItems.RemoveAt(itemIdx);
+            items.RemoveAt(itemIdx);
             item.transform.position = position;
             item.transform.rotation = rotation;
             item.YValueForEvent = spawnArea.bounds.min.y;
             item.OnOutOfScreen = () => {             
-                item.Disable(true); 
-                fruitItems.Add(item); };
+                item.Disable(true);
+                items.Add(item); };
             item.Enable();
 /*            
             var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Count)];

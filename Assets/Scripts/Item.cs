@@ -70,7 +70,7 @@ public class Item : MonoBehaviour
     {
         if (fruitCollider.enabled)
         {
-            if (transform.position.y < YValueForEvent * 2)
+            if (transform.position.y < YValueForEvent)
             {
                 OnOutOfScreen?.Invoke();
             }
