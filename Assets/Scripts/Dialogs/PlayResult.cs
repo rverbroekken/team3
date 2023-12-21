@@ -46,7 +46,7 @@ public class PlayResult : MonoBehaviour
         }
 
         m_PiggyBankLevel?.SetText((playerData.piggybankLevelIdx+1).ToString());
-        m_PiggyBankProgress?.SetText($"{playerData.piggybankLevelState}/{PlayerData.dummyScoreForNextLevel}");
+        m_PiggyBankProgress?.SetText($"{playerData.piggybankLevelState}/{PlayerData.piggybankScoreForNextLevel}");
     }
 
     public void OnContinue()

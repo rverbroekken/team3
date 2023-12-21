@@ -19,7 +19,7 @@ public class PlayerData
     public int piggybankLevelState = 0;
     public List<LevelState> levelStates = new List<LevelState>();
 
-    public const int dummyScoreForNextLevel = 50;
+    public const int piggybankScoreForNextLevel = 50;
 
     public void LevelWon(int levelIdx, int numStars, int numDummyMatches)
     {
@@ -30,8 +30,8 @@ public class PlayerData
         currentLevelIdx = levelIdx+1;
 
         piggybankLevelState += numDummyMatches;
-        piggybankLevelIdx += (piggybankLevelState / dummyScoreForNextLevel);
-        piggybankLevelState = piggybankLevelState % dummyScoreForNextLevel;
+        piggybankLevelIdx += (piggybankLevelState / piggybankScoreForNextLevel);
+        piggybankLevelState = piggybankLevelState % piggybankScoreForNextLevel;
 
         Save();
     }

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [Header("Dialogs")]
     [SerializeField] private PlayResult playResultDialog;
     [SerializeField] private Pause pauseDialog;
+    [SerializeField] private Lobby lobby;
     [SerializeField] private Image fadeImage;
 
     [Header("Levels")]
@@ -58,6 +59,10 @@ public class GameManager : MonoBehaviour
         {
             levelIdx = playerData.currentLevelIdx;
         }
+
+        spawner.enabled = false;
+
+        ToMainScreen(true);
     }
 
     public void OnFruitSelect(Fruit fruit)
@@ -87,11 +92,6 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
-    }
-
-    private void Start()
-    {
-        NewGame();
     }
 
     private void Update()
@@ -143,8 +143,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void ToMainScreen()
-    { 
+    public void ToMainScreen(bool instant)
+    {
+        lobby.Show(levels[Mathf.Min(levelIdx, levels.Length - 1)], playerData, instant);
     }
 
     public void OpenSettings()

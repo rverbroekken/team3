@@ -31,7 +31,7 @@ public class Pause : MonoBehaviour
     public void OnQuit()
     {
         Hide();
-        GameManager.Instance.ToMainScreen();
+        GameManager.Instance.ToMainScreen(true);
     }
 
     public void OnRestart()
