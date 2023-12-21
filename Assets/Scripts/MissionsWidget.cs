@@ -27,14 +27,25 @@ public class MissionsWidget : MonoBehaviour
                 AddMission(fruitData.fruit.type, goal * 3, fruitData.fruit.texture);
             }
         }
+        MoveMissionWidgets();
     }
 
     private void AddMission(string type, int amount, Texture2D texture)
     {
         var item = Instantiate(prefab, transform);
-        item.transform.SetLocalX(missionWidgets.Count * 220f);
+        item.transform.SetLocalX(-300f);
         item.Init(type, amount, texture);
         missionWidgets.Add(item);
+    }
+    public void MoveMissionWidgets()
+    {
+        for (var i = 0; i < missionWidgets.Count; i++)
+        {
+            var item = missionWidgets[i];
+            item.DOKill();
+            item.transform.DOLocalMoveX(i * 220f, 0.4f);
+        }
+        
     }
 
     public bool ItemToTray(string type)
@@ -45,6 +56,10 @@ public class MissionsWidget : MonoBehaviour
             {
                 // mission done
                 missionWidgets.Remove(item);
+                Destroy(item.gameObject);
+
+                MoveMissionWidgets();
+
                 return missionWidgets.Count == 0;
             }
         }
