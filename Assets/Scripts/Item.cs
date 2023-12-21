@@ -25,6 +25,8 @@ public class Item : MonoBehaviour
     public Action OnOutOfScreen;
     [HideInInspector] public float YValueForEvent;
 
+    public Collider FruitCollider => fruitCollider;
+
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -82,6 +84,10 @@ public class Item : MonoBehaviour
         fruitRigidbody.WakeUp();
         fruitCollider.enabled = true;
         gameObject.SetActive(true);
+    }
+
+    public void ClearVelocity()
+    {
         fruitRigidbody.velocity = Vector3.zero;
         fruitRigidbody.angularVelocity = Vector3.zero;
     }

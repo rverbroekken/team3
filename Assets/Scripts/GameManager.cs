@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Tray tray;
     [SerializeField] private MissionsWidget missionsWidget;
     [SerializeField] private TextMeshProUGUI piggyBankLevelStatus;
+    [SerializeField] private TextMeshProUGUI freezeTimer;
+
 
     [Header("Dialogs")]
     [SerializeField] private PlayResult playResultDialog;
@@ -111,7 +113,7 @@ public class GameManager : MonoBehaviour
             spawner.transform.position = new Vector3(spawner.transform.position.x, spawner.startY + (10f - size), spawner.transform.position.z);
         }
 
-        if (spawner.enabled)
+        if (spawner.IsActive)
         {
             levelDuration = Mathf.Max(0, levelDuration - Time.deltaTime);
             TimeSpan t = TimeSpan.FromSeconds(levelDuration);
@@ -122,6 +124,38 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void FreezeBooster()
+    {
+        StartCoroutine(CoFreezeBooster());
+    }
+
+    private IEnumerator CoFreezeBooster()
+    {
+        freezeTimer.gameObject.SetActive(true);
+        spawner.freeze = true;
+        Item[] items = FindObjectsOfType<Item>();
+        foreach (Item item in items)
+        {
+            item.Disable(false);
+            item.FruitCollider.enabled = true;
+        }
+
+        for (int i = 0; i <= 5; i++)
+        {
+            freezeTimer.SetText((5 - i).ToString());
+            yield return new WaitForSecondsRealtime(1f);
+        }
+
+        spawner.freeze = false;
+        items = FindObjectsOfType<Item>();
+        foreach (Item item in items)
+        {
+            item?.Enable();
+        }
+        freezeTimer.gameObject.SetActive(false);
+    }
+
 
     public void ResetSaveGame()
     {
@@ -224,6 +258,7 @@ public class GameManager : MonoBehaviour
         spawner.enabled = false;
         spawner.Clear();
         missionsWidget.Clear();
+        freezeTimer.gameObject.SetActive(false);
         tray.Clear();
 
         dummyScore = 0;

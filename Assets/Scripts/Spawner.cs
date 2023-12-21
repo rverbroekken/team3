@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour
 
     public float startY = -12f;
     public bool paused = false;
+    public bool freeze = false;
 
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
@@ -27,6 +28,8 @@ public class Spawner : MonoBehaviour
     private float minX = -8f;
     private float maxX = 8f;
     private int zIndex = 0;
+
+    public bool IsActive => enabled && !freeze && !paused;
 
     private void Awake()
     {
@@ -45,6 +48,7 @@ public class Spawner : MonoBehaviour
 
     public void NewGame(LevelData levelData)
     {
+        freeze = false;
         paused = false;
         minSpawnDelay = levelData.minSpawnDelay;
         maxSpawnDelay = levelData.maxSpawnDelay;
@@ -108,7 +112,7 @@ public class Spawner : MonoBehaviour
         var canvasZ = GameManager.Instance.FrontCanvas.transform.position.z + 3f;
         while (enabled)
         {
-            if (paused || (dummyItems.Count == 0 && missionItems.Count == 0))
+            if (paused || freeze || (dummyItems.Count == 0 && missionItems.Count == 0))
             {
                 yield return null;
                 continue;
@@ -148,6 +152,7 @@ public class Spawner : MonoBehaviour
                 item.Disable(true);
                 items.Add(item); };
             item.Enable();
+            item.ClearVelocity();
             item.StartFly();
 
             float force = Random.Range(item.itemData.minForce, item.itemData.maxForce);
