@@ -8,6 +8,7 @@ public class Bomb : Item
 
     protected override void OnItemSelect()
     {
+        base.OnItemSelect();
         StartCoroutine(Explode());
     }
 

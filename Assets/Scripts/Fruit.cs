@@ -7,12 +7,11 @@ public class Fruit : Item
 
     protected override void OnItemSelect()
     {
+        base.OnItemSelect();
         juiceEffect.Play();
         fruitCollider.enabled = false;        
         fruitRigidbody.Sleep();
         OnSelect?.Invoke(this);
-        //whole.SetActive(false);
-        //Destroy(gameObject, 2f);
     }
 
     public void Remove()

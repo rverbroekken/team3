@@ -146,6 +146,7 @@ public class Spawner : MonoBehaviour
                 item.Disable(true);
                 items.Add(item); };
             item.Enable();
+            item.StartFly();
 
             float force = Random.Range(item.itemData.minForce, item.itemData.maxForce);
             var body = item.GetComponent<Rigidbody>();

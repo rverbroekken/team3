@@ -11,24 +11,11 @@ public class Item : MonoBehaviour
     public AudioClip m_SpawnSound;
     public AudioClip m_TapSound;
 
-    /*
-        [Header("Rotation Settings")]
-        public float minXRotation = -1f;
-        public float minYRotation = -1f;
-        public float minZRotation = -1f;
-        public float maxXRotation = 1f;
-        public float maxYRotation = 1f;
-        public float maxZRotation = 1f;
-
-        [Header("Force Settings")]
-        public float minForce = 16f;
-        public float maxForce = 21f;
-    */
-
     [HideInInspector] public ItemData itemData;
     [HideInInspector] public Vector3 originalScale;
     [HideInInspector] public float clickTime = 0f;
 
+    protected AudioSource audioSource;
     protected Rigidbody fruitRigidbody;
     protected Collider fruitCollider;
     protected ParticleSystem juiceEffect;
@@ -40,6 +27,7 @@ public class Item : MonoBehaviour
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         fruitRigidbody = GetComponent<Rigidbody>();
         fruitCollider = GetComponentInChildren<Collider>();
         outline = GetComponentInChildren<Outline>();
@@ -97,11 +85,23 @@ public class Item : MonoBehaviour
         fruitRigidbody.angularVelocity = Vector3.zero;
     }
 
+    public void StartFly()
+    {
+/*
+        audioSource.clip = m_SpawnSound;
+        audioSource.Play();
+*/
+    }
+
     public void EnableOutline(bool enable)
     {
         outline.enabled = enable;
     }
 
-    protected virtual void OnItemSelect() { }
+    protected virtual void OnItemSelect() 
+    {
+        audioSource.clip = m_TapSound;
+        audioSource.Play();
+    }
 
 }
