@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Dialogs")]
     [SerializeField] private PlayResult playResultDialog;
+    [SerializeField] private Pause pauseDialog;
     [SerializeField] private Image fadeImage;
 
     [Header("Levels")]
@@ -117,6 +118,38 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void Pause(bool pause)
+    {
+        spawner.paused = false;
+        Item[] items = FindObjectsOfType<Item>();
+        if (pause)
+        {
+            foreach (Item item in items)
+            {
+                item.Disable(false);
+            }
+
+            pauseDialog.Show(activeLevelData);
+        }
+        else
+        {
+            foreach (Item item in items)
+            {
+                item.Enable();
+            }
+            pauseDialog.Hide();
+        }
+
+    }
+
+    public void ToMainScreen()
+    { 
+    }
+
+    public void OpenSettings()
+    {
+    }    
 
     public void NewGame()
     {

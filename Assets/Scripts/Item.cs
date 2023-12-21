@@ -76,6 +76,7 @@ public class Item : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
     public void Enable()
     {
         fruitRigidbody.WakeUp();
@@ -87,10 +88,7 @@ public class Item : MonoBehaviour
 
     public void StartFly()
     {
-/*
-        audioSource.clip = m_SpawnSound;
-        audioSource.Play();
-*/
+        audioSource.PlayOneShot(m_SpawnSound, 0.4f);
     }
 
     public void EnableOutline(bool enable)
@@ -100,8 +98,7 @@ public class Item : MonoBehaviour
 
     protected virtual void OnItemSelect() 
     {
-        audioSource.clip = m_TapSound;
-        audioSource.Play();
+        audioSource.PlayOneShot(m_TapSound);
     }
 
 }

@@ -18,6 +18,7 @@ public class Spawner : MonoBehaviour
     [Range(0f, 1f)] public float bombChance = 0.05f;
 
     public float startY = -12f;
+    public bool paused = false;
 
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
@@ -106,7 +107,7 @@ public class Spawner : MonoBehaviour
         var canvasZ = GameManager.Instance.FrontCanvas.transform.position.z + 3f;
         while (enabled)
         {
-            if (dummyItems.Count == 0 && missionItems.Count == 0)
+            if (paused || (dummyItems.Count == 0 && missionItems.Count == 0))
             {
                 yield return null;
                 continue;
