@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using sgg;
+using TMPro;
 //using System.Linq;
 
 public class GameManager : MonoBehaviour
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text timerText;
     [SerializeField] private Tray tray;
     [SerializeField] private MissionsWidget missionsWidget;
+    [SerializeField] private TextMeshProUGUI piggyBankLevelStatus;
 
     [Header("Dialogs")]
     [SerializeField] private PlayResult playResultDialog;
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
             if (!fruit.isGoalItem)
             {
                 dummyScore += 1;
+                piggyBankLevelStatus.SetText(dummyScore.ToString());
             }
         }
 
@@ -124,6 +127,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerData.Reset();
         playerData = PlayerData.Load();
+        levelIdx = 0;
         ToMainScreen(true);
     }
 
@@ -148,7 +152,6 @@ public class GameManager : MonoBehaviour
             }
             pauseDialog.Hide();
         }
-
     }
 
     public void ToMainScreen(bool instant)
