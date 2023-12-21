@@ -28,17 +28,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: eca68f85421849649b89191d399497b0, type: 2}
+    - target: {fileID: 2197915182229602677, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3266447441071319141, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4308050956024536992, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.761
+      value: 0.326
       objectReference: {fileID: 0}
     - target: {fileID: 4308050956024536992, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.867
+      value: 0.539
       objectReference: {fileID: 0}
     - target: {fileID: 4308050956024536992, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_LocalPosition.z
@@ -73,8 +77,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5338818267771318655, guid: 553e06c6099a82348af5c4eb08ddb210, type: 3}
     - target: {fileID: 5070596212828217375, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: far clip plane
+      value: 4.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070596212828217375, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: orthographic size
-      value: 0.3151513
+      value: 1.5683336
       objectReference: {fileID: 0}
     - target: {fileID: 5836773642521653556, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -187,6 +195,18 @@ PrefabInstance:
     - target: {fileID: 8457310349337905134, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457310349337905134, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457310349337905134, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457310349337905134, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905134, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_LocalPosition.x
