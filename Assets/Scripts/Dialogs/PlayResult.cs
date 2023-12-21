@@ -49,10 +49,15 @@ public class PlayResult : MonoBehaviour
         m_PiggyBankProgress?.SetText($"{playerData.piggybankLevelState}/{PlayerData.piggybankScoreForNextLevel}");
     }
 
-    public void OnContinue()
+    public void Hide()
     {
         DOTween.Kill(this);
         gameObject.SetActive(false);
+    }
+
+    public void OnContinue()
+    {
+        Hide();
         GameManager.Instance.NewGame();
     }
 }

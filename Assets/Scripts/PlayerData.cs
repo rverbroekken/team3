@@ -27,7 +27,7 @@ public class PlayerData
         levelState.levelIdx = levelIdx;
         levelState.numStars = numStars;
         levelStates.Add(levelState);
-        currentLevelIdx = levelIdx+1;
+        currentLevelIdx = levelIdx + 1;
 
         piggybankLevelState += numDummyMatches;
         piggybankLevelIdx += (piggybankLevelState / piggybankScoreForNextLevel);
@@ -38,8 +38,8 @@ public class PlayerData
 
     public LevelState GetLastLevelState()
     {
-        return levelStates[levelStates.Count-1];
-    }    
+        return levelStates[levelStates.Count - 1];
+    }
 
     public LevelState GetLevelState(int levelIdx)
     {
@@ -52,21 +52,20 @@ public class PlayerData
 
         //#if !UNITY_EDITOR
         path = Path.Combine(Application.persistentDataPath, path);
-//#else
-//        path = Path.Combine(Application.dataPath, path);
-//#endif
+        //#else
+        //        path = Path.Combine(Application.dataPath, path);
+        //#endif
         return path;
     }
-
     public static PlayerData Load()
     {
-        string path = DataPath(); 
+        string path = DataPath();
         if (File.Exists(path))
         {
             string fromjson = File.ReadAllText(path);
             if (fromjson != "")
             {
-                try 
+                try
                 {
                     var player = JsonUtility.FromJson<PlayerData>(fromjson);
                     return player;
@@ -76,7 +75,7 @@ public class PlayerData
                 }
             }
         }
-        return  new PlayerData();
+        return new PlayerData();
     }
 
     private void Save()
@@ -84,5 +83,10 @@ public class PlayerData
         string toJson = JsonUtility.ToJson(this, true);
         File.WriteAllText(DataPath(), toJson);
     }
-}
 
+    public static void Reset()
+    {
+        string toJson = JsonUtility.ToJson(new PlayerData(), true);
+        File.WriteAllText(DataPath(), toJson);
+    }
+}

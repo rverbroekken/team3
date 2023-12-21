@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayResult playResultDialog;
     [SerializeField] private Pause pauseDialog;
     [SerializeField] private Lobby lobby;
+    [SerializeField] private Settings settings;
     [SerializeField] private Image fadeImage;
 
     [Header("Levels")]
@@ -119,9 +120,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ResetSaveGame()
+    {
+        PlayerData.Reset();
+        playerData = PlayerData.Load();
+        ToMainScreen(true);
+    }
+
     public void Pause(bool pause)
     {
-        spawner.paused = false;
+        spawner.paused = pause;
         Item[] items = FindObjectsOfType<Item>();
         if (pause)
         {
@@ -145,11 +153,15 @@ public class GameManager : MonoBehaviour
 
     public void ToMainScreen(bool instant)
     {
+        ClearScene();
+        pauseDialog.Hide();
+        playResultDialog.Hide();
         lobby.Show(levels[Mathf.Min(levelIdx, levels.Length - 1)], playerData, instant);
     }
 
     public void OpenSettings()
     {
+        settings.Show();
     }    
 
     public void NewGame()
@@ -206,6 +218,7 @@ public class GameManager : MonoBehaviour
             Destroy(bomb.gameObject);
         }
 
+        spawner.enabled = false;
         spawner.Clear();
         missionsWidget.Clear();
         tray.Clear();

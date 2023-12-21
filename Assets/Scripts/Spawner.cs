@@ -45,6 +45,7 @@ public class Spawner : MonoBehaviour
 
     public void NewGame(LevelData levelData)
     {
+        paused = false;
         minSpawnDelay = levelData.minSpawnDelay;
         maxSpawnDelay = levelData.maxSpawnDelay;
         minX = levelData.minSpawnX;
