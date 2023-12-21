@@ -20,7 +20,7 @@ MonoBehaviour:
   maxZRotation: 1
   minForce: 16
   maxForce: 21
-  amount: 5
+  amount: 6
   goalAmount: 0
   isGoalItem: 0
   fruit: {fileID: 1345022896480124040, guid: 17555c19dae276347a21314680e974aa, type: 3}
@@ -38,8 +38,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Lazy Sunday Morning
   levelTimeInSeconds: 180
-  minSpawnDelay: 0.25
-  maxSpawnDelay: 1
+  minSpawnDelay: 0.1
+  maxSpawnDelay: 0.75
   minSpawnX: -5
   maxSpawnX: 5
   bombs:
@@ -85,8 +85,8 @@ MonoBehaviour:
   maxZRotation: 1
   minForce: 16
   maxForce: 21
-  amount: 5
-  goalAmount: 5
+  amount: 3
+  goalAmount: 3
   isGoalItem: 1
   fruit: {fileID: 1345022896480124040, guid: 3dbf8dfb5fc3b1b419ee4bdd29da63d9, type: 3}
 --- !u!114 &1948586368618079366
@@ -109,8 +109,8 @@ MonoBehaviour:
   maxZRotation: 1
   minForce: 16
   maxForce: 21
-  amount: 5
-  goalAmount: 5
+  amount: 3
+  goalAmount: 3
   isGoalItem: 1
   fruit: {fileID: 1345022896480124040, guid: 2e46358306d28da4a8b88135a7e69867, type: 3}
 --- !u!114 &4541041653707692680
@@ -133,7 +133,7 @@ MonoBehaviour:
   maxZRotation: 1
   minForce: 16
   maxForce: 21
-  amount: 5
+  amount: 6
   goalAmount: 0
   isGoalItem: 0
-  fruit: {fileID: 1345022896480124040, guid: 39185cfc39988b94983a958290085c96, type: 3}
+  fruit: {fileID: 1345022896480124040, guid: 3dadd027689a1c14991f4bb5957995ac, type: 3}

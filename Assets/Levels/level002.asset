@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5601298848004199028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -0.2
+  minYRotation: -2
+  minZRotation: -0.2
+  maxXRotation: 0.2
+  maxYRotation: 2
+  maxZRotation: 0.2
+  minForce: 15
+  maxForce: 18
+  amount: 3
+  goalAmount: 3
+  isGoalItem: 1
+  fruit: {fileID: 1345022896480124040, guid: bbef46109fe79a743aacd02d93d4196e, type: 3}
+--- !u!114 &-2013441009510753651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 16
+  maxForce: 21
+  amount: 3
+  goalAmount: 3
+  isGoalItem: 1
+  fruit: {fileID: 1345022896480124040, guid: 3dadd027689a1c14991f4bb5957995ac, type: 3}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2fb889a1bf68e4fa4701e059697b78, type: 3}
+  m_Name: level002
+  m_EditorClassIdentifier: 
+  description: Chunky Fruit Salad
+  levelTimeInSeconds: 180
+  minSpawnDelay: 0.1
+  maxSpawnDelay: 0.5
+  minSpawnX: -5
+  maxSpawnX: 5
+  bombs:
+  - {fileID: 0}
+  fruit:
+  - {fileID: -5601298848004199028}
+  - {fileID: -2013441009510753651}
+  - {fileID: 6226954962715495928}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &6226954962715495928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -2
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 2
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 15
+  maxForce: 17
+  amount: 3
+  goalAmount: 3
+  isGoalItem: 1
+  fruit: {fileID: 1345022896480124040, guid: d81b769bbd019cc4a81231075c758b01, type: 3}
