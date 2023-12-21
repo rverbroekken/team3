@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2fb889a1bf68e4fa4701e059697b78, type: 3}
   m_Name: level008
   m_EditorClassIdentifier: 
-  description: 
+  description: Sweet Tooth
   levelTimeInSeconds: 150
   minSpawnDelay: 0.25
   maxSpawnDelay: 0.95

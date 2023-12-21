@@ -84,10 +84,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minXRotation: -2
+  minXRotation: -6
   minYRotation: -2
   minZRotation: -2
-  maxXRotation: 2
+  maxXRotation: 6
   maxYRotation: 2
   maxZRotation: 2
   minForce: 16
