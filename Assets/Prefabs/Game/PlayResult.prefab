@@ -30502,6 +30502,9 @@ MonoBehaviour:
   m_Star3: {fileID: 7886439630142024021}
   m_Header: {fileID: 5930447631246880084}
   m_Description: {fileID: 5517668965458066202}
+  m_PiggyBankLevel: {fileID: 1641861598006950869}
+  m_PiggyBankProgress: {fileID: 1434713453547247907}
+  m_PiggyBankProgressSlider: {fileID: 44105778050966635}
 --- !u!1 &6654148800544140528
 GameObject:
   m_ObjectHideFlags: 0

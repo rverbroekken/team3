@@ -22,7 +22,6 @@ public class Spawner : MonoBehaviour
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
 
-//    private float maxLifetime = 5f;
     private int numLayers = 100;
     private float minX = -8f;
     private float maxX = 8f;

@@ -16,8 +16,8 @@ public class Tray : MonoBehaviour
 
     int animCounter = 0;
     static private float[] xPositions = { -450f, -300f, -150f, 0f, 150f, 300f, 450f };
-    const float moveMatchSpeed = .09f;
-    const float moveItemSpeed = .09f;
+    const float moveMatchSpeed = .05f;
+    const float moveItemSpeed = .05f;
     const float delay = .25f;
 
     Sequence itemsSequence;

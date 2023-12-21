@@ -33,17 +33,18 @@ public class MissionsWidget : MonoBehaviour
     private void AddMission(string type, int amount, Texture2D texture)
     {
         var item = Instantiate(prefab, transform);
-        item.transform.SetLocalX(-300f);
+        item.transform.SetLocalX((missionWidgets.Count * -220) - 300f);
         item.Init(type, amount, texture);
-        missionWidgets.Add(item);
+        missionWidgets.Insert(0, item);
     }
+
     public void MoveMissionWidgets()
     {
         for (var i = 0; i < missionWidgets.Count; i++)
         {
             var item = missionWidgets[i];
             item.DOKill();
-            item.transform.DOLocalMoveX(i * 220f, 0.4f);
+            item.transform.DOLocalMoveXAtSpeed(i * 220f, 0.2f);
         }
         
     }

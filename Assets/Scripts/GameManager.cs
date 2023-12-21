@@ -28,9 +28,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Levels")]
     [SerializeField] private LevelData[] levels;
-    [SerializeField] private int levelIdx = 0;
+    [SerializeField] private int levelIdx = 0; // only for cheating
 
     private LevelData activeLevelData = null;
+    private PlayerData playerData;
     private float prev_aspect;
     private AudioSource audioData;    
     private float levelDuration;
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
     public Canvas BackCanvas => backCanvas;
     public Canvas FrontCanvas => frontCanvas;
 
-    private float dummyScore = 0;
+    private int dummyScore = 0;
 
     private void Awake()
     {
@@ -51,6 +52,11 @@ public class GameManager : MonoBehaviour
         }
         audioData = GetComponent<AudioSource>();
         playResultDialog.gameObject.SetActive(false);
+        playerData = PlayerData.Load();
+        if (levelIdx == 0)
+        {
+            levelIdx = playerData.currentLevelIdx;
+        }
     }
 
     public void OnFruitSelect(Fruit fruit)
@@ -191,7 +197,11 @@ public class GameManager : MonoBehaviour
 
     private void LevelWon()
     {
-        DisableLevel();            
+        DisableLevel();
+
+        int numStars = ((int)levelDuration / (activeLevelData.levelTimeInSeconds / 3)) + 1;
+        playerData.LevelWon(levelIdx - 1, numStars, dummyScore);
+
         StartCoroutine(LevelWonSequence());
     }
 
@@ -205,7 +215,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.3f);
 
         int numStars = ((int)levelDuration / (activeLevelData.levelTimeInSeconds / 3)) + 1;
-        playResultDialog.Show(numStars, levelIdx-1, activeLevelData.description);
+        playResultDialog.Show(playerData, activeLevelData.description);
         activeLevelData = null;
     }
 
