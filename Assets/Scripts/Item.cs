@@ -94,7 +94,7 @@ public class Item : MonoBehaviour
 
     public void StartFly()
     {
-        audioSource.PlayOneShot(m_SpawnSound, 0.4f);
+        audioSource?.PlayOneShot(m_SpawnSound, 0.4f);
     }
 
     public void EnableOutline(bool enable)
@@ -112,7 +112,7 @@ public class Item : MonoBehaviour
 
     protected virtual void OnItemSelect() 
     {
-        audioSource.PlayOneShot(m_TapSound);
+        audioSource?.PlayOneShot(m_TapSound);
     }
 
 }
