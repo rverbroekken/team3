@@ -10,7 +10,6 @@ public class Settings : MonoBehaviour
     public Button m_CloseButton;
 
     public Slider m_MusicVolume;
-    public Slider m_FXVolume;
 
     public void Show()
     {
@@ -19,6 +18,18 @@ public class Settings : MonoBehaviour
 
         Sequence s = DOTween.Sequence(this);
         s.Append(m_Background.DOFade(1, 0.15f));
+
+        m_MusicVolume.value = AudioListener.volume;
+    }
+
+    public void OnVolume()
+    {
+        AudioListener.volume = m_MusicVolume.value;
+    }
+
+    public void OnFXVolume()
+    {
+        AudioListener.volume = m_MusicVolume.value;
     }
 
     public void OnDelete()
