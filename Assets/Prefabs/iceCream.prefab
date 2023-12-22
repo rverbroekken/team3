@@ -167,7 +167,7 @@ PrefabInstance:
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: itemData
       value: 
-      objectReference: {fileID: -4853380337988168675, guid: a06c2924870602e4b8d4f712ee918663, type: 2}
+      objectReference: {fileID: 3126888301891044381, guid: 05e9b9e2d44612c48bc0ee7f0a6159ed, type: 2}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: minScale
       value: 0.8
@@ -179,7 +179,7 @@ PrefabInstance:
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_TapSound
       value: 
-      objectReference: {fileID: 8300000, guid: 30bc710a43673f842b01b8575966fd2b, type: 3}
+      objectReference: {fileID: 8300000, guid: aaded6f76ca3fe94dbec7d644fe988af, type: 3}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_SpawnSound
       value: 

@@ -185,6 +185,10 @@ PrefabInstance:
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: isGoalItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_TapSound
       value: 
       objectReference: {fileID: 8300000, guid: aaded6f76ca3fe94dbec7d644fe988af, type: 3}

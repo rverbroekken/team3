@@ -179,19 +179,19 @@ PrefabInstance:
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: itemData
       value: 
-      objectReference: {fileID: -5999724848351825039, guid: a06c2924870602e4b8d4f712ee918663, type: 2}
+      objectReference: {fileID: 5426990098390413843, guid: 51779f29d6ba5d842a061e69b7d9bc90, type: 2}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: minScale
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: isGoalItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_TapSound
       value: 
-      objectReference: {fileID: 8300000, guid: 15664c41c0778f84c81a089e42350b3d, type: 3}
+      objectReference: {fileID: 8300000, guid: aaded6f76ca3fe94dbec7d644fe988af, type: 3}
     - target: {fileID: 8457310349337905133, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_SpawnSound
       value: 
