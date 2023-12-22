@@ -17,7 +17,6 @@ public class Bomb : Item
         outline.enabled = true;
         fruitCollider.enabled = false;
         whole.SetActive(false);
-
         juiceEffect.Play();
         yield return new WaitForSecondsRealtime(0.5f);
         GameManager.Instance.LevelLost();

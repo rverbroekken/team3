@@ -14,6 +14,7 @@ public class LevelState
 [Serializable]
 public class PlayerData
 {
+    public int currentHealth = 5;
     public int currentLevelIdx = 0;
     public int piggybankLevelIdx = 0;
     public int piggybankLevelState = 0;
@@ -29,11 +30,19 @@ public class PlayerData
         levelStates.Add(levelState);
         currentLevelIdx = levelIdx + 1;
 
+        int extraPiggyBankLevels = (piggybankLevelState / piggybankScoreForNextLevel);
+        currentHealth += extraPiggyBankLevels;
+
         piggybankLevelState += numDummyMatches;
-        piggybankLevelIdx += (piggybankLevelState / piggybankScoreForNextLevel);
+        piggybankLevelIdx += extraPiggyBankLevels;
         piggybankLevelState = piggybankLevelState % piggybankScoreForNextLevel;
 
         Save();
+    }
+
+    public void LevelLost()
+    {
+        currentHealth -= 1;
     }
 
     public LevelState GetLastLevelState()

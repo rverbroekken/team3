@@ -14,13 +14,18 @@ public class Lobby : MonoBehaviour
     public TextMeshProUGUI m_LevelId;
     public TextMeshProUGUI m_BankLevelId;
     public TextMeshProUGUI m_BankStatus;
+    public TextMeshProUGUI m_Health;
+
+    private PlayerData m_PlayerData;
 
     public void Show(LevelData levelData, PlayerData playerData, bool instant)
     {
+        m_PlayerData = playerData;
         m_LevelId.SetText((playerData.currentLevelIdx+1).ToString());
         m_Description.SetText(levelData.description);
         m_BankLevelId.SetText((playerData.piggybankLevelIdx+1).ToString());
         m_BankStatus.SetText($"{playerData.piggybankLevelState}/{PlayerData.piggybankScoreForNextLevel}");
+        m_Health.SetText(playerData.currentHealth.ToString());
 
         if (instant)
         {
@@ -44,6 +49,11 @@ public class Lobby : MonoBehaviour
 
     public void OnPlay()
     {
+        if (m_PlayerData.currentHealth <= 0)
+        {
+            GameManager.Instance.ResetSaveGame();
+        }
+
         Hide();
         GameManager.Instance.NewGame();
     }

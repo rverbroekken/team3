@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI piggyBankLevelStatus;
     [SerializeField] private TextMeshProUGUI freezeTimer;
     [SerializeField] private Button freezeButton;
+    [SerializeField] private TextMeshProUGUI health;
 
 
     [Header("Dialogs")]
@@ -142,9 +143,9 @@ public class GameManager : MonoBehaviour
             item.FruitCollider.enabled = true;
         }
 
-        for (int i = 0; i <= 5; i++)
+        for (int i = 0; i <= 3; i++)
         {
-            freezeTimer.SetText((5 - i).ToString());
+            freezeTimer.SetText((3 - i).ToString());
             yield return new WaitForSecondsRealtime(1f);
         }
 
@@ -217,6 +218,7 @@ public class GameManager : MonoBehaviour
 
         audioData.Play(0);
 
+        health.SetText(playerData.currentHealth.ToString());
         spawner.NewGame(activeLevelData);
         missionsWidget.NewGame(activeLevelData);
         freezeButton.interactable = true;
@@ -279,6 +281,7 @@ public class GameManager : MonoBehaviour
 
     public void LevelLost()
     {
+        playerData.LevelLost();
         DisableLevel();
         StartCoroutine(ExplodeSequence());
     }
@@ -314,38 +317,9 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        float elapsed = 0f;
-        float duration = 0.5f;
-        // Fade to white
-        while (elapsed < duration)
-        {
-            float t = Mathf.Clamp01(elapsed / duration);
-            fadeImage.color = Color.Lerp(Color.clear, Color.white, t);
-
-            Time.timeScale = 1f - t;
-            elapsed += Time.unscaledDeltaTime;
-
-            yield return null;
-        }
-
         yield return new WaitForSecondsRealtime(1f);
 
-        activeLevelData = null;
-
-        NewGame();
-
-        elapsed = 0f;
-
-        // Fade back in
-        while (elapsed < duration)
-        {
-            float t = Mathf.Clamp01(elapsed / duration);
-            fadeImage.color = Color.Lerp(Color.white, Color.clear, t);
-
-            elapsed += Time.unscaledDeltaTime;
-
-            yield return null;
-        }
+        ToMainScreen(false);
     }
 
 }
