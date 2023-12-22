@@ -53,9 +53,12 @@ MonoBehaviour:
   timerText: {fileID: 0}
   tray: {fileID: 0}
   missionsWidget: {fileID: 0}
+  piggyBankLevelStatus: {fileID: 0}
+  freezeTimer: {fileID: 0}
   playResultDialog: {fileID: 0}
   pauseDialog: {fileID: 0}
   lobby: {fileID: 0}
+  settings: {fileID: 0}
   fadeImage: {fileID: 0}
   levels:
   - {fileID: 11400000, guid: ece3b315fd07dd245b3a946658aa4e45, type: 2}
@@ -70,6 +73,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a104b6621a1b81b4a8e9f9f1e73b1228, type: 2}
   - {fileID: 11400000, guid: 4117005f4102e214a88a3bd024ca1892, type: 2}
   - {fileID: 11400000, guid: 3117aff051de0194fb8dda7d67a1c667, type: 2}
+  - {fileID: 11400000, guid: 51779f29d6ba5d842a061e69b7d9bc90, type: 2}
+  - {fileID: 11400000, guid: 05e9b9e2d44612c48bc0ee7f0a6159ed, type: 2}
   levelIdx: 0
 --- !u!82 &5541419962027151506
 AudioSource:

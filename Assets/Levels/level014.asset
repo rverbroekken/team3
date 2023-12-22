@@ -1,0 +1,235 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2681376605559445545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 15
+  maxForce: 20
+  amount: 4
+  goalAmount: 4
+  isGoalItem: 0
+  fruit: {fileID: 1345022896480124040, guid: 5427708f28c37b748bb9355763bc070a, type: 3}
+--- !u!114 &-187464959672908878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 16
+  maxForce: 18
+  amount: 4
+  goalAmount: 4
+  isGoalItem: 0
+  fruit: {fileID: 1345022896480124040, guid: 5c7230d3e98d47745b522dfbf42e44ed, type: 3}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2fb889a1bf68e4fa4701e059697b78, type: 3}
+  m_Name: level014
+  m_EditorClassIdentifier: 
+  description: Head Freeze
+  levelTimeInSeconds: 150
+  minSpawnDelay: 0.15
+  maxSpawnDelay: 0.8
+  minSpawnX: -5
+  maxSpawnX: 5
+  bombs:
+  - {fileID: 0}
+  fruit:
+  - {fileID: 2612540443032995043}
+  - {fileID: 8364992056465932353}
+  - {fileID: -187464959672908878}
+  - {fileID: 8407772640369669224}
+  - {fileID: 2723874869518971337}
+  - {fileID: -2681376605559445545}
+  - {fileID: 6871890661218924595}
+  - {fileID: 3126888301891044381}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &2612540443032995043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 15
+  maxForce: 18
+  amount: 4
+  goalAmount: 4
+  isGoalItem: 1
+  fruit: {fileID: 1345022896480124040, guid: 08e28759a4383be4e8769618c09deed8, type: 3}
+--- !u!114 &2723874869518971337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 18
+  maxForce: 20
+  amount: 4
+  goalAmount: 4
+  isGoalItem: 0
+  fruit: {fileID: 1345022896480124040, guid: 5bd8353986e81ea47b895e17d32e8764, type: 3}
+--- !u!114 &3126888301891044381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -4
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 4
+  maxZRotation: 1
+  minForce: 16
+  maxForce: 21
+  amount: 4
+  goalAmount: 4
+  isGoalItem: 1
+  fruit: {fileID: 1345022896480124040, guid: c0d2378f10c55c8498740c232393f554, type: 3}
+--- !u!114 &6871890661218924595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 15
+  maxForce: 21
+  amount: 4
+  goalAmount: 4
+  isGoalItem: 0
+  fruit: {fileID: 1345022896480124040, guid: a13d0b9119125eb478fb59e69da870aa, type: 3}
+--- !u!114 &8364992056465932353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 15
+  maxForce: 20
+  amount: 4
+  goalAmount: 4
+  isGoalItem: 1
+  fruit: {fileID: 1345022896480124040, guid: eb372543e6283844cb7ac785460b8a81, type: 3}
+--- !u!114 &8407772640369669224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84f981469089164ea032ed932ff443b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXRotation: -1
+  minYRotation: -1
+  minZRotation: -1
+  maxXRotation: 1
+  maxYRotation: 1
+  maxZRotation: 1
+  minForce: 15
+  maxForce: 17
+  amount: 4
+  goalAmount: 4
+  isGoalItem: 0
+  fruit: {fileID: 1345022896480124040, guid: 385009732640a6d4ebb5fca3972b0f0d, type: 3}
