@@ -8,6 +8,7 @@ public class Fruit : Item
     protected override void OnItemSelect()
     {
         base.OnItemSelect();
+        EnableOutline(true);
         juiceEffect.Play();
         fruitCollider.enabled = false;        
         fruitRigidbody.Sleep();

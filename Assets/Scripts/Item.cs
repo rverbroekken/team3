@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System;
 
 public class Item : MonoBehaviour
@@ -97,17 +98,38 @@ public class Item : MonoBehaviour
         audioSource?.PlayOneShot(m_SpawnSound, 0.4f);
     }
 
+/*
+    private bool TouchDown()
+    {
+        foreach (var touch in Touch.activeTouches)
+        {
+            // Only respond to first finger
+            if (touch.finger.index == 0 && touch.isInProgress)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+*/
+
     public void EnableOutline(bool enable)
     {
-        if (enable)
-        {
-            outline.OutlineColor = new Color(1f, 139 / 255f, 0f);
-        }
-        else
-        {
-            outline.OutlineColor = Color.black;
-        }
         outline.enabled = enable;
+        if (enable && Input.GetMouseButton(0))
+        {
+            StartCoroutine(CoEnableOutline());
+        }
+    }
+
+    private IEnumerator CoEnableOutline()
+    {
+        while (Input.GetMouseButton(0))
+        {
+            yield return null;
+
+        }
+        outline.enabled = false;
     }
 
     protected virtual void OnItemSelect() 

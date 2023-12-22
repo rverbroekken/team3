@@ -14,7 +14,7 @@ public class Bomb : Item
 
     private IEnumerator Explode()
     {
-        outline.enabled = true;
+        EnableOutline(true);
         fruitCollider.enabled = false;
         whole.SetActive(false);
         juiceEffect.Play();

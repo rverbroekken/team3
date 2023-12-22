@@ -98,8 +98,7 @@ public class Tray : MonoBehaviour
     }
 
     private IEnumerator CoQueueAddItem(Fruit fruit)
-    {
-        fruit.EnableOutline(true);
+    {        
         animCounter += 1;
         fruit.clickTime = Time.time;
         while (itemsSequence.active)
