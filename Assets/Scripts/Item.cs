@@ -99,17 +99,15 @@ public class Item : MonoBehaviour
 
     public void EnableOutline(bool enable)
     {
-/*
         if (enable)
         {
-//            outline.OutlineColor = new Color(1f, 139 / 255f, 0f);
+            outline.OutlineColor = new Color(1f, 139 / 255f, 0f);
         }
         else
         {
-//            outline.OutlineColor = Color.black;
+            outline.OutlineColor = Color.black;
         }
-//        outline.enabled = enable;
-*/
+        outline.enabled = enable;
     }
 
     protected virtual void OnItemSelect() 
