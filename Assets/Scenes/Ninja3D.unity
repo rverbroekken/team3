@@ -1938,6 +1938,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1594661888}
     - target: {fileID: 6922828621993065336, guid: ec4f7068a16223f46baec7b4840f7b86, type: 3}
+      propertyPath: freezeButton
+      value: 
+      objectReference: {fileID: 1444734888}
+    - target: {fileID: 6922828621993065336, guid: ec4f7068a16223f46baec7b4840f7b86, type: 3}
       propertyPath: missionsWidget
       value: 
       objectReference: {fileID: 592300244}

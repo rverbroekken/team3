@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MissionsWidget missionsWidget;
     [SerializeField] private TextMeshProUGUI piggyBankLevelStatus;
     [SerializeField] private TextMeshProUGUI freezeTimer;
+    [SerializeField] private Button freezeButton;
 
 
     [Header("Dialogs")]
@@ -154,6 +155,7 @@ public class GameManager : MonoBehaviour
             item?.Enable();
         }
         freezeTimer.gameObject.SetActive(false);
+        freezeButton.interactable = false;
     }
 
 
@@ -217,6 +219,7 @@ public class GameManager : MonoBehaviour
 
         spawner.NewGame(activeLevelData);
         missionsWidget.NewGame(activeLevelData);
+        freezeButton.interactable = true;
         Update();
     }
 
