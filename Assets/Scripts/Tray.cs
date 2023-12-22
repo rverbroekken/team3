@@ -57,7 +57,32 @@ public class Tray : MonoBehaviour
         }
         return (false, 0);
     }
-    
+
+    //quick hack
+    private (bool result, int index) HasMatch(List<string> _trayItems, int currentItem)
+    {
+        int count = 1;
+        string activeType = "";
+        for (var i = 0; i <= currentItem; i++)
+        {
+            if (_trayItems[i] == activeType)
+            {
+                count += 1;
+                if (count >= 3)
+                {
+                    return (true, i);
+                }
+            }
+            else
+            {
+                count = 1;
+                activeType = _trayItems[i];
+            }
+        }
+        return (false, 0);
+    }
+
+
     public bool CalculateCurrentMatch(string type)
     {
         finalItems[finalItemIndex] = type;
@@ -76,7 +101,7 @@ public class Tray : MonoBehaviour
             }
         }
 
-        var hasMatch = HasMatch(trayItems, finalItemIndex);
+        var hasMatch = HasMatch(finalItems, finalItemIndex);
         if (hasMatch.result)
         {
             for (int i = hasMatch.index + 1; i <= finalItemIndex; i++)
