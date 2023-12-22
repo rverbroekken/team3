@@ -45,8 +45,7 @@ public class MissionsWidget : MonoBehaviour
             var item = missionWidgets[i];
             item.DOKill();
             item.transform.DOLocalMoveXAtSpeed(i * 300f, 0.2f);
-        }
-        
+        }        
     }
 
     public bool ItemToTray(string type)
@@ -55,6 +54,7 @@ public class MissionsWidget : MonoBehaviour
         {
             if (item.ItemToTray(type))
             {
+                AudioManager.Instance.Play("goalcomplete");
                 // mission done
                 missionWidgets.Remove(item);
                 Destroy(item.gameObject);

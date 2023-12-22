@@ -178,6 +178,8 @@ public class Tray : MonoBehaviour
 
     private void HandleMatchSequence(List<TrayItem> items, Sequence itemsSequence, int index, int oldCurrentItem)
     {
+        AudioManager.Instance.Play("merge_tray_items");
+
         //itemsSequence.AppendInterval(delay);
         //move match items to one position  (center)
         itemsSequence.Append(items[index-1].transform.DOLocalMoveXAtSpeed(xPositions[index-2], moveMatchSpeed));

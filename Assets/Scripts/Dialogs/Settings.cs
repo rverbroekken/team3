@@ -23,12 +23,14 @@ public class Settings : MonoBehaviour
 
     public void OnDelete()
     {
+        AudioManager.Instance.Play("button01");
         Hide();
         GameManager.Instance.ResetSaveGame();
     }
 
     public void OnClose()
     {
+        AudioManager.Instance.Play("button01");
         Hide();
     }
 

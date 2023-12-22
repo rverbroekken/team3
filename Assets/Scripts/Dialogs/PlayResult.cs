@@ -31,19 +31,28 @@ public class PlayResult : MonoBehaviour
         Sequence s = DOTween.Sequence(this);
         s.Append(m_Background.DOFade(1, 0.15f));
         s.AppendInterval(0.5f);
-        s.AppendCallback(() => m_Star1.gameObject.SetActive(true));
+        s.AppendCallback(() => {
+            m_Star1.gameObject.SetActive(true);
+            AudioManager.Instance.Play("get_star01");
+        });
 
         var numStars = playerData.GetLastLevelState().numStars;
         if (numStars > 1)
         {
             s.AppendInterval(0.5f);
-            s.AppendCallback(() => m_Star2.gameObject.SetActive(true));
+            s.AppendCallback(() => {
+                m_Star2.gameObject.SetActive(true);
+                AudioManager.Instance.Play("get_star02");
+            });
         }
         if (numStars > 2)
         {
             s.AppendInterval(0.5f);
-            s.AppendCallback(() => m_Star3.gameObject.SetActive(true));
-        }
+            s.AppendCallback(() => {
+                m_Star3.gameObject.SetActive(true);
+                AudioManager.Instance.Play("get_star03");
+            });
+        }      
 
         m_PiggyBankLevel?.SetText((playerData.piggybankLevelIdx+1).ToString());
         m_PiggyBankProgress?.SetText($"{playerData.piggybankLevelState}/{PlayerData.piggybankScoreForNextLevel}");
@@ -59,6 +68,7 @@ public class PlayResult : MonoBehaviour
     {
         Hide();
         GameManager.Instance.NewGame();
+        AudioManager.Instance.Play("button01");
     }
 }
 

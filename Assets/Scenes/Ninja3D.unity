@@ -1929,6 +1929,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965445775}
   m_CullTransparentMesh: 0
+--- !u!1 &2082599506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2082599508}
+  - component: {fileID: 2082599507}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2082599507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082599506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b332e665ed053479a07411c5564146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 11400000, guid: bb12a8f6122c38d408934fcdbfc49d65, type: 2}
+  - {fileID: 11400000, guid: 370f7ceb6c895334291924fa3784bb3c, type: 2}
+  - {fileID: 11400000, guid: 5023828b3992b054c9282517a1b8923c, type: 2}
+  - {fileID: 11400000, guid: c407e891bbe4f7646901c2b13c793900, type: 2}
+  - {fileID: 11400000, guid: 857e6f0d96d3dae42809c849da28b15d, type: 2}
+  - {fileID: 11400000, guid: be90e015b7133a241a3999c799a52ae9, type: 2}
+  - {fileID: 11400000, guid: 90cd932d01273994b917be96394db555, type: 2}
+  - {fileID: 11400000, guid: 53d3260faf9820349b55405d8917c2ae, type: 2}
+  - {fileID: 11400000, guid: 9838b1ff090d0804686e68bd0da2fafd, type: 2}
+--- !u!4 &2082599508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082599506}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2101031082
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,3 +3393,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 562293976}
   - {fileID: 931717902}
+  - {fileID: 2082599508}

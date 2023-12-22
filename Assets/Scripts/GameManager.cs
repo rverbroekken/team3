@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
     public void FreezeBooster()
     {
         StartCoroutine(CoFreezeBooster());
+        AudioManager.Instance.Play("freeze");
     }
 
     private IEnumerator CoFreezeBooster()
@@ -202,7 +203,8 @@ public class GameManager : MonoBehaviour
     public void OpenSettings()
     {
         settings.Show();
-    }    
+        AudioManager.Instance.Play("button01");
+    }
 
     public void NewGame()
     {
@@ -316,6 +318,8 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
+       
+        AudioManager.Instance.Play("fail");
 
         yield return new WaitForSecondsRealtime(1f);
 

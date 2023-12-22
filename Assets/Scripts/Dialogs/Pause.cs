@@ -30,18 +30,21 @@ public class Pause : MonoBehaviour
 
     public void OnQuit()
     {
+        AudioManager.Instance.Play("button01");
         Hide();
         GameManager.Instance.ToMainScreen(true);
     }
 
     public void OnRestart()
     {
+        AudioManager.Instance.Play("button01");
         Hide();
         GameManager.Instance.NewGame();
     }
 
     public void OnContinue()
     {
+        AudioManager.Instance.Play("button01");
         GameManager.Instance.Pause(false);
     }
 

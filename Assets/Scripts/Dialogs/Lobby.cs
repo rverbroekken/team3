@@ -49,6 +49,7 @@ public class Lobby : MonoBehaviour
 
     public void OnPlay()
     {
+        AudioManager.Instance.Play("button01");
         if (m_PlayerData.currentHealth <= 0)
         {
             GameManager.Instance.ResetSaveGame();
@@ -60,6 +61,7 @@ public class Lobby : MonoBehaviour
 
     public void OnShop()
     {
+        AudioManager.Instance.Play("button01");
     }
 
     public void OnClan()
