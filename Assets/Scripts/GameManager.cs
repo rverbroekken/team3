@@ -82,24 +82,29 @@ public class GameManager : MonoBehaviour
                 dummyScore += 1;
                 piggyBankLevelStatus.SetText(dummyScore.ToString());
             }
-        }
-
-        if (tray.IsFull())
-        {
-            LevelLost();
+            else
+            {
+            }
         }
         else
         {
-            if (missionsWidget.ItemToTray(fruit.type))
+            if (tray.IsFull())
             {
-                // all missions done
-
-                // wait for anim to be done before level end
-                levelIdx = Mathf.Min(levels.Length, levelIdx + 1);
-                LevelWon();
+                LevelLost();
                 return;
             }
         }
+
+        if (missionsWidget.ItemToTray(fruit.type))
+        {
+            // all missions done
+
+            // wait for anim to be done before level end
+            levelIdx = Mathf.Min(levels.Length, levelIdx + 1);
+            LevelWon();
+            return;
+        }
+
     }
 
     private void Update()
