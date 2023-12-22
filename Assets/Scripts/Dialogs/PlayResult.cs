@@ -18,7 +18,7 @@ public class PlayResult : MonoBehaviour
 
     public void Show(PlayerData playerData, string description)
     {
-        m_Header.SetText($"Level {playerData.currentLevelIdx+1} won!!!");
+        m_Header.SetText($"Level {playerData.currentLevelIdx} won!!!");
         m_Description.SetText(description);
 
         m_Star1.gameObject.SetActive(false);

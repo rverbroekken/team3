@@ -54,10 +54,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whole: {fileID: 737267348992330642}
   itemCamera: {fileID: 0}
-  minScale: 0.9
-  maxScale: 1.1
   type: Bomb
+  m_SpawnSound: {fileID: 0}
+  m_TapSound: {fileID: 0}
+  itemData: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
+  clickTime: 0
+  YValueForEvent: 0
 --- !u!54 &6841112139972370405
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 1, g: 0.989607, b: 0, a: 1}
-  outlineWidth: 1
+  outlineWidth: 1.1
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
