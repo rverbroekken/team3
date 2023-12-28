@@ -39,6 +39,7 @@ Transform:
   - {fileID: 3539028151425218845}
   - {fileID: 3010925224074902353}
   - {fileID: 7038913212750204517}
+  - {fileID: 2809591895608845407}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &502755466114576480
@@ -54,6 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whole: {fileID: 737267348992330642}
+  scaledCollider: {fileID: 8173089509413637464}
   itemCamera: {fileID: 1304837884144462850}
   type: Bomb
   m_SpawnSound: {fileID: 8300000, guid: 90509d7f07f21874ab0844f74c8ad1a8, type: 3}
@@ -5474,3 +5476,34 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &8173089509413637464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2809591895608845407}
+  m_Layer: 0
+  m_Name: ScaledCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2809591895608845407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8173089509413637464}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 502755466114576494}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

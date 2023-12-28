@@ -5,6 +5,7 @@ using System;
 public class Item : MonoBehaviour
 {
     public GameObject whole;
+    public GameObject scaledCollider;
     public Camera itemCamera;
     public string type = "";
 
@@ -12,31 +13,43 @@ public class Item : MonoBehaviour
     public AudioClip m_SpawnSound;
     public AudioClip m_TapSound;
 
+
     [HideInInspector] public ItemData itemData;
     [HideInInspector] public Vector3 originalScale;
     [HideInInspector] public float clickTime = 0f;
 
     protected AudioSource audioSource;
     protected Rigidbody fruitRigidbody;
-    protected Collider fruitCollider;
+    protected MeshCollider fruitCollider;
     protected ParticleSystem juiceEffect;
     protected Outline outline;
+    protected MeshFilter meshFilter;
 
     public Action<Fruit> OnSelect;
     public Action OnOutOfScreen;
     [HideInInspector] public float YValueForEvent;
 
-    public Collider FruitCollider => fruitCollider;
+    public MeshCollider FruitCollider => fruitCollider;
 
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         fruitRigidbody = GetComponent<Rigidbody>();
-        fruitCollider = GetComponentInChildren<Collider>();
+//        fruitCollider = GetComponentInChildren<Collider>();
         outline = GetComponentInChildren<Outline>();
         juiceEffect = GetComponentInChildren<ParticleSystem>();
         originalScale = transform.localScale;
         outline.enabled = false;
+        meshFilter = whole.GetComponent<MeshFilter>();
+
+//        var collider = GetComponentInChildren<MeshCollider>();
+
+        scaledCollider.AddComponent<MeshCollider>();
+        fruitCollider = scaledCollider.GetComponent<MeshCollider>();
+        fruitCollider.sharedMesh = meshFilter.mesh;
+        fruitCollider.convex = true;
+        fruitCollider.isTrigger = true;
+
         if (itemCamera)
         {
             itemCamera.enabled = false;
@@ -52,11 +65,6 @@ public class Item : MonoBehaviour
     }
 
     protected virtual void OnAwake() {}
-
-    void OnMouseDown()
-    {
-        OnItemSelect();
-    }
 
     private void Update()
     {
@@ -98,20 +106,21 @@ public class Item : MonoBehaviour
         audioSource?.PlayOneShot(m_SpawnSound, 0.4f);
     }
 
-/*
-    private bool TouchDown()
+    void OnMouseDown()
     {
-        foreach (var touch in Touch.activeTouches)
+        if (!GameManager.Instance.doSlice)
         {
-            // Only respond to first finger
-            if (touch.finger.index == 0 && touch.isInProgress)
-            {
-                return true;
-            }
+            OnItemSelect();
         }
-        return false;
     }
-*/
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (GameManager.Instance.doSlice && other.CompareTag("Player"))
+        {
+            OnItemSelect();
+        }
+    }
 
     public void EnableOutline(bool enable)
     {

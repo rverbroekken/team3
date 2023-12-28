@@ -27,13 +27,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button freezeButton;
     [SerializeField] private TextMeshProUGUI health;
 
-
     [Header("Dialogs")]
     [SerializeField] private PlayResult playResultDialog;
     [SerializeField] private Pause pauseDialog;
     [SerializeField] private Lobby lobby;
     [SerializeField] private Settings settings;
     [SerializeField] private Image fadeImage;
+    [SerializeField] private Blade blade;
 
     [Header("Levels")]
     [SerializeField] private LevelData[] levels;
@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     private AudioSource audioData;    
     private float levelDuration;
 
+//    private bool doSlice = true;
+
+    public bool doSlice = false;
     public Camera MainCamera => mainCamera;
     public Canvas BackCanvas => backCanvas;
     public Canvas FrontCanvas => frontCanvas;
@@ -68,6 +71,8 @@ public class GameManager : MonoBehaviour
         }
 
         spawner.enabled = false;
+        blade.enabled = false;
+        blade.gameObject.SetActive(false);
 
         ToMainScreen(true);
     }
@@ -223,6 +228,9 @@ public class GameManager : MonoBehaviour
 
         CreateRenderTextures();
 
+        blade.gameObject.SetActive(doSlice);
+        blade.enabled = doSlice;
+
         audioData.Play(0);
 
         health.SetText(playerData.currentHealth.ToString());
@@ -272,6 +280,8 @@ public class GameManager : MonoBehaviour
         missionsWidget.Clear();
         freezeTimer.gameObject.SetActive(false);
         tray.Clear();
+        blade.enabled = false;
+        blade.gameObject.SetActive(false);
 
         dummyScore = 0;
     }
@@ -284,6 +294,7 @@ public class GameManager : MonoBehaviour
             item.Disable();
         }
         spawner.enabled = false;
+        blade.enabled = false;
     }
 
     public void LevelLost()

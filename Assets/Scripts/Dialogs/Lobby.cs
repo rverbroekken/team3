@@ -56,6 +56,20 @@ public class Lobby : MonoBehaviour
         }
 
         Hide();
+        GameManager.Instance.doSlice = false;
+        GameManager.Instance.NewGame();
+    }
+
+    public void OnPlaySliced()
+    {
+        AudioManager.Instance.Play("button01");
+        if (m_PlayerData.currentHealth <= 0)
+        {
+            GameManager.Instance.ResetSaveGame();
+        }
+
+        Hide();
+        GameManager.Instance.doSlice = true;
         GameManager.Instance.NewGame();
     }
 
